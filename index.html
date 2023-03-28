@@ -14,49 +14,12 @@
         rel="stylesheet">
     <link href="https://www.buquebus.com/resources_portal/Bqb/resources/css/styles_bqb.css" rel="stylesheet">
     <link href="https://www.buquebus.com/Portal/resources/css/select2.min.css?v=1679079738967" rel="stylesheet">
-
+    <link rel="stylesheet" href="card.css">
 </head>
 
 <style>
-    .demo-container {
-        width: 100%;
-        max-width: 350px;
-        margin: 50px auto;
-    }
-
-    .credit-card-form:before {
-        content: "";
-        position: absolute;
-        background-color: #0000005c;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-    }
-
-    .credit-card-form {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .credit-card-form-box {
-        max-width: 100%;
-        padding: 2rem;
-        height: 100%;
-        width: 900px;
-        height: auto;
-        background-color: #ffff;
-        border: solid 1px red;
-        z-index: 101;
-        position: relative;
+    .card-container {
+        margin-bottom: 1.5rem;
     }
 
     #cont-payment-methods h3,
@@ -194,8 +157,21 @@
         accent-color: #0077c4;
     }
 
+    .modal-tarjeta .modal-dialog {
+        max-width: 750px;
+    }
+
     .modal-tarjeta .modal-header {
         box-shadow: none;
+    }
+
+
+    .modal-tarjeta .tab-content>.tab-pane {
+        display: none;
+    }
+
+    .modal-tarjeta .tab-content>.active {
+        display: block;
     }
 
     .modal-tarjeta .modal-footer {
@@ -207,7 +183,8 @@
         align-items: center;
         justify-content: space-around;
         padding: 0;
-
+        border-bottom: solid 1px #000;
+        margin-bottom: 2rem;
     }
 
     .modal-tarjeta .tabs li {
@@ -241,6 +218,7 @@
         background-color: #fff;
 
     }
+
     .modal-tarjeta .row-logos .bqb-col {
         display: flex;
         text-align: center;
@@ -249,6 +227,7 @@
         justify-content: flex-start;
         gap: 1rem;
     }
+
     .modal-tarjeta .row-logos img {
         max-width: 80%;
     }
@@ -260,271 +239,422 @@
         justify-content: center;
         gap: 2rem;
     }
+
+    .modal-tarjeta .input-date-wrapper {
+        display: flex;
+    }
+
+    .modal-tarjeta .input-date-wrapper input {
+        width: 50%;
+    }
+
+    .modal-tarjeta .input-date-wrapper input:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .modal-tarjeta .input-date-wrapper input:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-radius: 0;
+    }
+
+    .modal-tarjeta .input-date-wrapper input::-webkit-outer-spin-button,
+    .modal-tarjeta .input-date-wrapper input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    .modal-tarjeta .input-date-wrapper input {
+        -moz-appearance: textfield;
+    }
+
+    .modal-tarjeta input {
+        text-transform: uppercase;
+    }
+
+    ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        text-transform: none;
+    }
+
+    :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        text-transform: none;
+    }
+
+    ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        text-transform: none;
+    }
+
+    :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        text-transform: none;
+    }
+
+    ::placeholder {
+        /* Recent browsers */
+        text-transform: none;
+    }
+
+    @media (max-width: 768px) {
+
+        .modal-tarjeta .modal-dialog {
+            max-width: 100%;
+            border-radius: 0;
+            height: 100%;
+            margin: 0;
+        }
+
+        .modal-tarjeta .modal-content {
+            border-radius: 0;
+            height: 100%;
+            box-shadow: none;
+            border: none;
+        }
+    }
 </style>
 
 <body>
     <main data-sector="" class="bqb-main" data-type="ContentElement" data-name="CONT" data-element="449">
         <!-- Modal Tarjeta -->
-        <div class="modal fade modal-tarjeta" id="formTarjeta" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="formTarjetaLabel" aria-hidden="true">
+        <div class="modal fade modal-tarjeta" id="modalFormTarjeta" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="modalFormTarjetaLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="formTarjetaLabel">Agregar tarjeta de crédito</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="modalFormTarjetaLabel">Pagar con tarjeta de crédito</h5>
+                        <button type="button" class="close" aria-label="Close" data-bs-dismiss="modal" id="func">
+                            <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
-                        <ul class="tabs">
-                            <li class="active"><span>Tarjeta 1</span></li>
-                            <li><span>Tarjeta 2</span></li>
-                        </ul>
-                        <div class="tarjeta-tabs-content">
-                            <div class="tab-content" id="tarjeta2Tab">
-                                Ingrese Tarjeta 1 de 2 <br>
-                                Importe ARS 21.668,5
-
-                                <form class="method-form form-1 form-card-pay active" id="frm-edit-data-card"
+                        <div class="bqb-row">
+                            <div class="bqb-col-md-7">
+                                <form class="method-form form-0 form-card-pay active" id="frm-edit-data-card"
                                     novalidate="novalidate"><input type="hidden" name="idPaymentGatewayOperation"
                                         value="">
-                                    <div class="method-payment method-payment-0 active" id="payment-fees">
-                                        <span class="h5">Seleccioná la cantidad de cuotas</span>
 
-                                        <div class="payment-container" id="fees-container-0">
-                                            <select class="bqb-select cards-years" id="paymentSelection">
-                                                <option value="21668.50">1 pago de ARS 21668.50</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
                                     <div class="bqb-row">
-                                        <div class="bqb-col-8 bqb-offset-2">
-                                            <div class="demo-container">
-                                                <div class="card-wrapper"></div>
 
-
-                                            </div>
-                                        </div>
                                         <div class="bqb-col-12">
-                                            <span class="h5">Datos de la tarjeta</span>
                                             <div class="bqb-form-group"><label for="numberCard">Numero de
-                                                    tarjeta</label><input class="bqb-form-control" id="numberCard-1"
+                                                    tarjeta</label><input class="bqb-form-control" id="numberCard-0"
                                                     placeholder="Ingresá el número de tu tarjeta" name="cardNumber"
                                                     inputmode="numeric" type="tel"> </div>
                                         </div>
                                         <div class=" bqb-col-12">
-                                            <div class="bqb-form-group"><label for="creditCardHolder1">Titular de la
-                                                    tarjeta</label><input class="bqb-form-control" id="holderCard-1"
+                                            <div class="bqb-form-group"><label for="creditCardHolder0">Nombre y
+                                                    apellido</label><input class="bqb-form-control" id="holderCard-0"
                                                     name="cardHolder" placeholder="Como figura en la tarjeta"
                                                     type="text" required="" aria-required="true">
                                                 <div class="invalid-tooltip">Por favor, ingresá un nombre válido</div>
                                             </div>
                                         </div>
-                                        <div class="bqb-col-12 bqb-col-md-6">
+                                        <div class="bqb-col-12">
                                             <div class="bqb-row">
-                                                <div class="bqb-col-12">
-                                                    <label>Vencimiento de la tarjeta</label>
+                                                <div class="bqb-col-md-6">
+                                                    <div class="bqb-row">
+                                                        <div class="bqb-col-12">
+                                                            <label>Fecha de expiración</label>
+                                                        </div>
+
+                                                        <div class="bqb-col-12 input-date-wrapper">
+
+
+                                                            <input class=" bqb-form-control cards-months" type="number"
+                                                                name="expMonth" id="validUntilMountCard-0"
+                                                                placeholder="MM">
+
+
+                                                            <input type="number" name="expYear"
+                                                                class=" bqb-form-control card-years"
+                                                                id="validUntilYearCard-0" placeholder="AA">
+
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="bqb-col-12">
-                                                    <input id="expirationdate" type="text" pattern="[0-9]*"
-                                                        inputmode="numeric" name="expDate">
-                                                    <select class="bqb-select cards-months" id="validUntilMountCard-1"
-                                                        name="expMonth">
-                                                        <option disabled selected value="">Mes</option>
-                                                        <option value="01">01</option>
-                                                        <option value="02">02</option>
-                                                        <option value="03">03</option>
-                                                        <option value="04">04</option>
-                                                        <option value="05">05</option>
-                                                        <option value="06">06</option>
-                                                        <option value="07">07</option>
-                                                        <option value="08">08</option>
-                                                        <option value="09">09</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                    </select>
+                                                <div class="offset-md-1 bqb-col-md-5">
+                                                    <div class="bqb-form-group"> <label for="creditCardCode0">Código de
+                                                            seguridad</label>
+                                                        <div class="form-code-wrapper"> <input class="bqb-form-control"
+                                                                id="verificationCodeCard-0" type="password"
+                                                                name="cvcCard" required="" pattern="[0-9]*"
+                                                                inputmode="numeric" aria-required="true"> <a href="#"
+                                                                class="code-help" style="display:none">?</a> </div>
+                                                        <div class="invalid-tooltip">Por favor, ingresá un nombre válido
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="bqb-col-6">
-                                                    <select class="bqb-select cards-years" id="validUntilYearCard-1"
-                                                        name="expYear">
-                                                        <option disabled selected value="">Año</option>
-                                                        <option value="23">2023</option>
-                                                        <option value="24">2024</option>
-                                                        <option value="25">2025</option>
-                                                        <option value="26">2026</option>
-                                                        <option value="27">2027</option>
-                                                        <option value="28">2028</option>
-                                                        <option value="29">2029</option>
-                                                        <option value="30">2030</option>
-                                                        <option value="31">2031</option>
-                                                        <option value="32">2032</option>
-                                                        <option value="33">2033</option>
-                                                        <option value="34">2034</option>
-                                                        <option value="35">2035</option>
-                                                        <option value="36">2036</option>
-                                                        <option value="37">2037</option>
-                                                        <option value="38">2038</option>
-                                                        <option value="39">2039</option>
-                                                        <option value="40">2040</option>
-                                                        <option value="41">2041</option>
-                                                        <option value="42">2042</option>
-                                                        <option value="43">2043</option>
+                                            </div>
+                                        </div>
+                                        <div class="bqb-col-12">
+                                            <hr>
+                                            <div class="method-payment method-payment-0 active" id="payment-fees">
+                                                <span class="h5">Cantidad de cuotas</span>
+                                                <div class="payment-container" id="fees-container-0">
+                                                    <select class="bqb-select cards-years" id="paymentSelection">
+                                                        <option value="21668.50">1 pago de ARS 21668.50</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                        <div class="bqb-col-12 offset-md-1 bqb-col-md-5">
-                                            <div class="bqb-form-group"> <label for="creditCardCode1">Código de
-                                                    seguridad</label>
-                                                <div class="form-code-wrapper"> <input class="bqb-form-control"
-                                                        id="verificationCodeCard-1" type="password" name="ccv"
-                                                        required="" pattern="[0-9]*" inputmode="numeric"
-                                                        aria-required="true"> <a href="#" class="code-help"
-                                                        style="display:none">?</a> </div>
-                                                <div class="invalid-tooltip">Por favor, ingresá un nombre válido</div>
-                                            </div>
+                                        <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
+                                            <button class="button-primary w-100" style="width: 100%;">PAGAR</button>
                                         </div>
                                     </div>
                                 </form>
-                                <div class="modal-footer">
-                                    <button type="button" class="button-primary" disabled
-                                        data-bs-dismiss="modal">Ingresar segunda
-                                        tarjeta</button>
+                            </div>
+                            <div class="bqb-col-md-5">
+                                <div class="card-container">
+                                    <div class="card-wrapper card-wrapper-0"></div>
                                 </div>
                             </div>
-                            <div class=" tarjeta-tab" id="tarjeta2Tab"></div>
+
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
+
         <!-- Modal Dos Tarjetas -->
-        <div class="modal fade modal-tarjeta" id="formDosTarjetas" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="formDosTarjetasLabel" aria-hidden="true">
+        <div class="modal fade modal-tarjeta" id="modalFormDosTarjetas" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalFormDosTarjetasLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="formDosTarjetasLabel">Agregar dos tarjetas de crédito</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="modalFormDosTarjetasLabel">Pagar con tarjeta de crédito</h5>
+                        <button type="button" class="close" aria-label="Close" data-bs-dismiss="modal" id="func">
+                            <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
-                        <form class="method-form form-2 form-card-pay active" id="frm-edit-data-card"
-                                    novalidate="novalidate"><input type="hidden" name="idPaymentGatewayOperation"
-                                        value="">
-                                    <div class="method-payment method-payment-0 active" id="payment-fees">
-                                        <span class="h5">Seleccioná la cantidad de cuotas</span>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                                    aria-selected="true">Tarjeta 1</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                    type="button" role="tab" aria-controls="profile" aria-selected="false">Tarjeta
+                                    2</button>
+                            </li>
 
-                                        <div class="payment-container" id="fees-container-0">
-                                            <select class="bqb-select cards-years" id="paymentSelection">
-                                                <option value="21668.50">1 pago de ARS 21668.50</option>
-                                            </select>
-                                        </div>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                                    </div>
-                                    <div class="bqb-row">
-                                        <div class="bqb-col-8 bqb-offset-2">
-                                            <div class="demo-container">
-                                                <div class="card-wrapper2"></div>
+                                <div class="bqb-row">
+                                    <div class="bqb-col-md-7">
+                                        <form class="method-form form-1 form-card-pay active" id="frm-edit-data-card"
+                                            novalidate="novalidate"><input type="hidden"
+                                                name="idPaymentGatewayOperation" value="">
 
-
-                                            </div>
-                                        </div>
-                                        <div class="bqb-col-12">
-                                            <span class="h5">Datos de la tarjeta</span>
-                                            <div class="bqb-form-group"><label for="numberCard">Numero de
-                                                    tarjeta</label><input class="bqb-form-control" id="numberCard-1"
-                                                    placeholder="Ingresá el número de tu tarjeta" name="cardNumber"
-                                                    inputmode="numeric" type="tel"> </div>
-                                        </div>
-                                        <div class=" bqb-col-12">
-                                            <div class="bqb-form-group"><label for="creditCardHolder1">Titular de la
-                                                    tarjeta</label><input class="bqb-form-control" id="holderCard-1"
-                                                    name="cardHolder" placeholder="Como figura en la tarjeta"
-                                                    type="text" required="" aria-required="true">
-                                                <div class="invalid-tooltip">Por favor, ingresá un nombre válido</div>
-                                            </div>
-                                        </div>
-                                        <div class="bqb-col-12 bqb-col-md-6">
                                             <div class="bqb-row">
-                                                <div class="bqb-col-12">
-                                                    <label>Vencimiento de la tarjeta</label>
-                                                </div>
-                                                <div class="bqb-col-12">
-                                                    <input id="expirationdate" type="text" pattern="[0-9]*"
-                                                        inputmode="numeric" name="expDate">
-                                                    <select class="bqb-select cards-months" id="validUntilMountCard-1"
-                                                        name="expMonth">
-                                                        <option disabled selected value="">Mes</option>
-                                                        <option value="01">01</option>
-                                                        <option value="02">02</option>
-                                                        <option value="03">03</option>
-                                                        <option value="04">04</option>
-                                                        <option value="05">05</option>
-                                                        <option value="06">06</option>
-                                                        <option value="07">07</option>
-                                                        <option value="08">08</option>
-                                                        <option value="09">09</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                    </select>
-                                                </div>
-                                                <div class="bqb-col-6">
-                                                    <select class="bqb-select cards-years" id="validUntilYearCard-1"
-                                                        name="expYear">
-                                                        <option disabled selected value="">Año</option>
-                                                        <option value="23">2023</option>
-                                                        <option value="24">2024</option>
-                                                        <option value="25">2025</option>
-                                                        <option value="26">2026</option>
-                                                        <option value="27">2027</option>
-                                                        <option value="28">2028</option>
-                                                        <option value="29">2029</option>
-                                                        <option value="30">2030</option>
-                                                        <option value="31">2031</option>
-                                                        <option value="32">2032</option>
-                                                        <option value="33">2033</option>
-                                                        <option value="34">2034</option>
-                                                        <option value="35">2035</option>
-                                                        <option value="36">2036</option>
-                                                        <option value="37">2037</option>
-                                                        <option value="38">2038</option>
-                                                        <option value="39">2039</option>
-                                                        <option value="40">2040</option>
-                                                        <option value="41">2041</option>
-                                                        <option value="42">2042</option>
-                                                        <option value="43">2043</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
 
+                                                <div class="bqb-col-12">
+                                                    <div class="bqb-form-group"><label for="numberCard">Numero de
+                                                            tarjeta</label><input class="bqb-form-control"
+                                                            id="numberCard-1"
+                                                            placeholder="Ingresá el número de tu tarjeta"
+                                                            name="cardNumber" inputmode="numeric" type="tel"> </div>
+                                                </div>
+                                                <div class=" bqb-col-12">
+                                                    <div class="bqb-form-group"><label for="creditCardHolder0">Nombre y
+                                                            apellido</label><input class="bqb-form-control"
+                                                            id="holderCard-1" name="cardHolder"
+                                                            placeholder="Como figura en la tarjeta" type="text"
+                                                            required="" aria-required="true">
+                                                        <div class="invalid-tooltip">Por favor, ingresá un nombre válido
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bqb-col-12">
+                                                    <div class="bqb-row">
+                                                        <div class="bqb-col-md-6">
+                                                            <div class="bqb-row">
+                                                                <div class="bqb-col-12">
+                                                                    <label>Fecha de expiración</label>
+                                                                </div>
+                                                                <!--  <div class="bqb-col-12">
+                                                                        <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric"
+                                                                            name="expiryCard">
+                                                                    </div> -->
+                                                                <div class="bqb-col-12">
+                                                                    <div class="bqb-row">
+                                                                        <div class="bqb-col-6">
+                                                                            <input
+                                                                                class=" bqb-form-control cards-months"
+                                                                                type="number" name="expMonth"
+                                                                                id="validUntilMountCard-1">
+                                                                        </div>
+                                                                        <div class="bqb-col-6">
+                                                                            <input type="number" name="expYear"
+                                                                                class=" bqb-form-control card-years"
+                                                                                id="validUntilYearCard-1">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="offset-md-1 bqb-col-md-5">
+                                                            <div class="bqb-form-group"> <label
+                                                                    for="creditCardCode0">Código de
+                                                                    seguridad</label>
+                                                                <div class="form-code-wrapper"> <input
+                                                                        class="bqb-form-control"
+                                                                        id="verificationCodeCard-1" type="password"
+                                                                        name="cvcCard" required="" pattern="[0-9]*"
+                                                                        inputmode="numeric" aria-required="true"> <a
+                                                                        href="#" class="code-help"
+                                                                        style="display:none">?</a> </div>
+                                                                <div class="invalid-tooltip">Por favor, ingresá un
+                                                                    nombre válido
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bqb-col-12">
+                                                    <hr>
+                                                    <div class="method-payment method-payment-1 active"
+                                                        id="payment-fees">
+                                                        <span class="h5">Cantidad de cuotas</span>
+                                                        <div class="payment-container" id="fees-container-1">
+                                                            <select class="bqb-select cards-years"
+                                                                id="paymentSelection">
+                                                                <option value="21668.50">1 pago de ARS 21668.50</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                        <div class="bqb-col-12 offset-md-1 bqb-col-md-5">
-                                            <div class="bqb-form-group"> <label for="creditCardCode1">Código de
-                                                    seguridad</label>
-                                                <div class="form-code-wrapper"> <input class="bqb-form-control"
-                                                        id="verificationCodeCard-1" type="password" name="ccv"
-                                                        required="" pattern="[0-9]*" inputmode="numeric"
-                                                        aria-required="true"> <a href="#" class="code-help"
-                                                        style="display:none">?</a> </div>
-                                                <div class="invalid-tooltip">Por favor, ingresá un nombre válido</div>
                                             </div>
+                                        </form>
+                                        <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
+                                            <button class="button-primary w-100" style="width: 100%;"
+                                                id="mybut">INGRESAR SEGUNDA TARJETA</button>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="bqb-col-md-5">
+                                        <div class="card-container">
+                                            <div class="card-wrapper card-wrapper-1"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="bqb-row">
+                                    <div class="bqb-col-md-7">
+                                        <form class="method-form form-2 form-card-pay active" id="frm-edit-data-card"
+                                            novalidate="novalidate"><input type="hidden"
+                                                name="idPaymentGatewayOperation" value="">
+
+                                            <div class="bqb-row">
+
+                                                <div class="bqb-col-12">
+                                                    <div class="bqb-form-group"><label for="numberCard">Numero de
+                                                            tarjeta</label><input class="bqb-form-control"
+                                                            id="numberCard-2"
+                                                            placeholder="Ingresá el número de tu tarjeta"
+                                                            name="cardNumber" inputmode="numeric" type="tel"> </div>
+                                                </div>
+                                                <div class=" bqb-col-12">
+                                                    <div class="bqb-form-group"><label for="creditCardHolder2">Nombre y
+                                                            apellido</label><input class="bqb-form-control"
+                                                            id="holderCard-2" name="cardHolder"
+                                                            placeholder="Como figura en la tarjeta" type="text"
+                                                            required="" aria-required="true">
+                                                        <div class="invalid-tooltip">Por favor, ingresá un nombre válido
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bqb-col-12">
+                                                    <div class="bqb-row">
+                                                        <div class="bqb-col-md-6">
+                                                            <div class="bqb-row">
+                                                                <div class="bqb-col-12">
+                                                                    <label>Fecha de expiración</label>
+                                                                </div>
+                                                                <!--  <div class="bqb-col-12">
+                                                                    <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric"
+                                                                        name="expiryCard">
+                                                                </div> -->
+                                                                <div class="bqb-col-12">
+                                                                    <div class="bqb-row">
+                                                                        <div class="bqb-col-6">
+                                                                            <input
+                                                                                class=" bqb-form-control cards-months"
+                                                                                type="number" name="expMonth"
+                                                                                id="validUntilMountCard-2">
+                                                                        </div>
+                                                                        <div class="bqb-col-6">
+                                                                            <input type="number" name="expYear"
+                                                                                class=" bqb-form-control card-years"
+                                                                                id="validUntilYearCard-2">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="offset-md-1 bqb-col-md-5">
+                                                            <div class="bqb-form-group"> <label
+                                                                    for="creditCardCode2">Código de
+                                                                    seguridad</label>
+                                                                <div class="form-code-wrapper"> <input
+                                                                        class="bqb-form-control"
+                                                                        id="verificationCodeCard-2" type="password"
+                                                                        name="cvcCard" required="" pattern="[0-9]*"
+                                                                        inputmode="numeric" aria-required="true"> <a
+                                                                        href="#" class="code-help"
+                                                                        style="display:none">?</a> </div>
+                                                                <div class="invalid-tooltip">Por favor, ingresá un
+                                                                    nombre válido
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bqb-col-12">
+                                                    <hr>
+                                                    <div class="method-payment method-payment-2 active"
+                                                        id="payment-fees">
+                                                        <span class="h5">Cantidad de cuotas</span>
+                                                        <div class="payment-container" id="fees-container-2">
+                                                            <select class="bqb-select cards-years"
+                                                                id="paymentSelection">
+                                                                <option value="21668.50">1 pago de ARS 21668.50</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
+                                                    <button class="button-primary w-100"
+                                                        style="width: 100%;">PAGAR</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="bqb-col-md-5">
+                                        <div class="card-container">
+                                            <div class="card-wrapper card-wrapper-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
+
                 </div>
             </div>
         </div>
-
 
         <!-- Modal Medios de Pago -->
         <div class="modal fade modal-tarjeta" id="modalMediosPago" data-bs-keyboard="false" tabindex="-1"
@@ -536,6 +666,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
+
                         <h3>Tarjetas de crédito</h3>
                         <div class="bqb-row row-logos">
                             <div class="bqb-col">
@@ -580,6 +712,9 @@
         <div class="container-main">
             <div class="bqb-container">
                 <div class="bqb-row">
+                    <div class="bqb-col-12">
+
+                    </div>
                     <div class="bqb-col-12 bqb-col-lg-8">
                         <div id="cont-payment-methods" class="checkout-card payment-method section-credit-card-active"
                             style="margin-bottom: 4rem;">
@@ -596,7 +731,7 @@
 
                             <ul class="new-payment-method-menu payment-menu-cards">
                                 <li class="new-payment-method-item">
-                                    <button data-bs-toggle="modal" data-bs-target="#formTarjeta">
+                                    <button data-bs-toggle="modal" data-bs-target="#modalFormTarjeta">
                                         <div>
                                             <img src="images/icon-unatarjeta.svg" alt="">
                                             <p>Pagar con tarjeta de crédito</p>
@@ -609,7 +744,7 @@
                                 </li>
                                 <li class="new-payment-method-item">
 
-                                    <button data-bs-toggle="modal" data-bs-target="#formDosTarjetas">
+                                    <button data-bs-toggle="modal" data-bs-target="#modalFormDosTarjetas">
                                         <div>
                                             <img src="images/icon-dostarjetas.svg" alt="">
                                             <p>Pagar con dos tarjetas</p>
@@ -621,8 +756,6 @@
                                 </li>
 
                             </ul>
-
-
 
                             <h3>Otros medios de pago</h3>
                             <ul class="new-payment-method-menu">
@@ -685,13 +818,34 @@
     <script src="card.js"></script>
 
     <script>
-        var c = new Card({
-            form: document.querySelector('form'),
-            container: '.card-wrapper'
+        var c0 = new Card({
+            form: document.querySelector('.form-0'),
+            container: '.card-wrapper-0',
+            formSelectors: {
+                expiryInput: ['input[name="expMonth"]', 'input[name="expYear"]']
+            }
+        });
+        var c1 = new Card({
+            form: document.querySelector('.form-1'),
+            container: '.card-wrapper-1',
+            formSelectors: {
+                expiryInput: ['input[name="expMonth"]', 'input[name="expYear"]']
+            }
         });
         var c2 = new Card({
             form: document.querySelector('.form-2'),
-            container: '.card-wrapper2'
+            container: '.card-wrapper-2',
+            formSelectors: {
+                expiryInput: ['input[name="expMonth"]', 'input[name="expYear"]']
+            }
+        });
+    </script>
+
+    <script>
+        document.querySelector("#mybut").addEventListener("click", function () {
+            var sel = document.querySelector('#profile-tab');
+            var tab = new bootstrap.Tab(sel);
+            tab.show();
         });
     </script>
 
