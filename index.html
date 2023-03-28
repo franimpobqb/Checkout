@@ -167,6 +167,20 @@
         box-shadow: none;
     }
 
+    .modal-tarjeta .modal-footer {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .modal-tarjeta h5 {
+        font-weight: bold;
+    }
+
+    /* SELECTOR TABS */
 
     .modal-tarjeta .tab-content>.tab-pane {
         display: none;
@@ -174,10 +188,6 @@
 
     .modal-tarjeta .tab-content>.active {
         display: block;
-    }
-
-    .modal-tarjeta .modal-footer {
-        border: none;
     }
 
     .modal-tarjeta ul.tabs {
@@ -212,10 +222,6 @@
         opacity: 1;
     }
 
-    .modal-tarjeta h5 {
-        font-weight: bold;
-    }
-
     .modal-tarjeta .tab-content {
         background-color: #fff;
 
@@ -232,14 +238,6 @@
 
     .modal-tarjeta .row-logos img {
         max-width: 80%;
-    }
-
-    .modal-tarjeta .modal-footer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
     }
 
     /* INPUTS */
@@ -303,7 +301,7 @@
         text-transform: none;
     }
 
-  
+
 
     @media (max-width: 768px) {
 
@@ -325,6 +323,7 @@
 
 <body>
     <main data-sector="" class="bqb-main" data-type="ContentElement" data-name="CONT" data-element="449">
+
         <!-- Modal Tarjeta -->
         <div class="modal fade modal-tarjeta" id="modalFormTarjeta" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="modalFormTarjetaLabel" aria-hidden="true">
@@ -444,8 +443,9 @@
                                     aria-selected="true">Tarjeta 1</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                                    type="button" role="tab" aria-controls="profile" aria-selected="false">Tarjeta
+                                <button class="nav-link" id="tab-tarjeta2" data-bs-toggle="tab"
+                                    data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                    aria-selected="false">Tarjeta
                                     2</button>
                             </li>
 
@@ -542,7 +542,7 @@
                                         </form>
                                         <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
                                             <button class="button-primary w-100" style="width: 100%;"
-                                                id="mybut">INGRESAR SEGUNDA TARJETA</button>
+                                                id="switchTarjeta2">INGRESAR SEGUNDA TARJETA</button>
                                         </div>
                                     </div>
                                     <div class="bqb-col-md-5">
@@ -555,7 +555,7 @@
 
 
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="tab-tarjeta2">
                                 <div class="bqb-row">
                                     <div class="bqb-col-md-7">
                                         <form class="method-form form-2 form-card-pay active" id="frm-edit-data-card"
@@ -824,6 +824,7 @@
     <script src="card.js"></script>
 
     <script>
+        /* INICIAR TARJETAS / UNO POR TARJETA */
         var c0 = new Card({
             form: document.querySelector('.form-0'),
             container: '.card-wrapper-0',
@@ -845,14 +846,19 @@
                 expiryInput: ['input[name="expMonth"]', 'input[name="expYear"]']
             }
         });
-    </script>
 
-    <script>
-        document.querySelector("#mybut").addEventListener("click", function () {
-            var sel = document.querySelector('#profile-tab');
-            var tab = new bootstrap.Tab(sel);
-            tab.show();
+        /* BOTON PARA PASAR A SEGUNDA TARJETA */
+        document.querySelector("#switchTarjeta2").addEventListener("click", function () {
+            var selectTab2 = document.querySelector('#tab-tarjeta2');
+            var tab2 = new bootstrap.Tab(selectTab2);
+            tab2.show();
         });
+
+        /* LIMPIAR INPUTS AL CERRAR EL MODAL */
+
+        /* DESELECCIONAR OPCION DE OTROS MEDIOS DE PAGO SI SE ABRE UN MODAL DE TARJETA */
+
+        /* ACTIVAR BOTÓN DE PAGO SI SE SELECCIONA UN MEDIO DE PAGO (OTROS) */
     </script>
 
 </body>
