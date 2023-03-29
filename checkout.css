@@ -1,12 +1,14 @@
 ﻿    /* SELECTOR METODOS DE PAGO */
     
     #cont-payment-methods h3,
-    .modal-tarjeta h3 {
+    .modal-tarjeta h3,
+    #modalMediosPago h3 {
         color: #0077c4;
         text-transform: uppercase;
         font-size: 1.5rem;
         font-weight: bold;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
     }
 
     ul.new-payment-method-menu {
@@ -25,7 +27,6 @@
     }
 
     li.new-payment-method-item:first-child {
-
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -163,6 +164,30 @@
     .modal-tarjeta h5 {
         font-weight: bold;
     }
+
+    .row-logos {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .row-logos img {
+        max-width: 70px;
+        max-height: 40px;
+    }
+    .row-logos div {
+        display: flex;
+        text-align: center;
+        align-items: flex-start;
+        gap: .75rem;
+        flex-direction: column;
+    }
+      .row-logos div img {
+        width: 100%;
+        max-height: inherit;
+        max-width: inherit;
+      }
 
     /* SELECTOR TABS */
 
