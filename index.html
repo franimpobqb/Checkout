@@ -14,389 +14,11 @@
         rel="stylesheet">
     <link href="https://www.buquebus.com/resources_portal/Bqb/resources/css/styles_bqb.css" rel="stylesheet">
     <link href="https://www.buquebus.com/Portal/resources/css/select2.min.css?v=1679079738967" rel="stylesheet">
-    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="checkout.css">
 </head>
 
 <style>
-    /* SELECTOR METODOS DE PAGO */
-    #cont-payment-methods h3,
-    .modal-tarjeta h3 {
-        color: #0077c4;
-        text-transform: uppercase;
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-    }
 
-    ul.new-payment-method-menu {
-        box-shadow: inset 0px 0px 0px 0.1rem #D6D6D6;
-        border-radius: 10px;
-        padding-left: 0;
-        margin-bottom: 3rem;
-    }
-
-    li.new-payment-method-item {
-        border-bottom: solid 1px #D6D6D6;
-        position: relative;
-        min-height: 75px;
-        cursor: pointer;
-        transition: all .2s ease;
-    }
-
-    li.new-payment-method-item:first-child {
-
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    li.new-payment-method-item:last-child {
-        border-bottom: solid 1px #d6d6d600;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
-    li.new-payment-method-item:hover {
-        box-shadow: inset 0px 0px 0px 1px #a5a5a5;
-    }
-
-    li.new-payment-method-item input[type=radio]:checked+.form-check-label {
-        box-shadow: inset 0px 0px 0px 2px #0077c4;
-    }
-
-    li.new-payment-method-item:first-child input[type=radio]:checked+.form-check-label {
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-    }
-
-    li.new-payment-method-item:last-child input[type=radio]:checked+.form-check-label {
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-    }
-
-    li.new-payment-method-item .form-check-label img {
-        max-width: 130px;
-    }
-
-    li.new-payment-method-item button {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 2rem;
-        border: 0;
-        background: none;
-        cursor: pointer;
-        outline: none;
-    }
-
-    li.new-payment-method-item button div {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 1.25rem;
-    }
-
-    li.new-payment-method-item button div img {
-        width: 30px;
-    }
-
-    li.new-payment-method-item button p {
-        color: #000;
-        font-size: 1.6rem;
-        font-weight: 600;
-        margin-bottom: 0;
-        text-align: left;
-    }
-
-    li.new-payment-method-item .form-check {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    li.new-payment-method-item .form-check-label {
-        width: 100%;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 1rem 2rem;
-        gap: 1.5rem;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-        cursor: pointer;
-    }
-
-
-    li.new-payment-method-item label span {
-        margin-bottom: 0;
-        line-height: 1.2;
-        font-weight: bold;
-        color: #009FE2;
-        padding-left: 1rem;
-    }
-
-    li.new-payment-method-item input[type=radio] {
-        margin-right: 2rem;
-        width: 20px;
-        height: 20px;
-        accent-color: #0077c4;
-    }
-
-    /* MODAL TARJETAS */
-    .card-container {
-        margin-bottom: 1.5rem;
-    }
-
-    .modal-tarjeta .modal-dialog {
-        max-width: 750px;
-    }
-
-    .modal-tarjeta .modal-header {
-        box-shadow: none;
-    }
-
-    .modal-tarjeta .modal-footer {
-        border: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-    }
-
-    .modal-tarjeta h5 {
-        font-weight: bold;
-    }
-
-    /* SELECTOR TABS */
-
-    .modal-tarjeta .tab-content>.tab-pane {
-        display: none;
-    }
-
-    .modal-tarjeta .tab-content>.active {
-        display: block;
-    }
-
-    .modal-tarjeta .nav.nav-tabs {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding: 0;
-        border-bottom: solid 1px #000;
-        margin-bottom: 1rem;
-    }
-
-    .modal-tarjeta .nav.nav-tabs li {
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: #0077c4;
-        width: 50%;
-        text-align: center;
-        padding: 2rem;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
-
-        transition: all .2s ease;
-        cursor: pointer;
-        position: relative;
-    }
-
-    .modal-tarjeta .nav.nav-tabs li li:hover {
-        opacity: 1;
-    }
-
-
-
-    .modal-tarjeta .nav.nav-tabs button {
-        position: absolute;
-        transition: all .2s ease;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        background: none;
-        outline: none;
-        color: rgb(145, 145, 145);
-        text-transform: uppercase;
-        font-weight: bold;
-        border-bottom: solid 3px #ffffff00;
-        cursor: pointer;
-    }
-
-    .modal-tarjeta .nav.nav-tabs button.active {
-        color: #0077c4;
-        opacity: 1;
-    }
-
-    .modal-tarjeta .nav.nav-tabs li:first-child button:after {
-        content: "";
-        position: absolute;
-        bottom: -3px;
-        height: 3px;
-        width: 100%;
-        background-color: #0077c4;
-        opacity: 1;
-        transition: all .2s ease;
-    }
-
-    .modal-tarjeta .nav.nav-tabs li:first-child button.active:after {
-        right: 0;
-
-    }
-
-    .modal-tarjeta .nav.nav-tabs li:first-child button:not(.active):after {
-
-        right: -100%;
-
-    }
-
-
-    .modal-tarjeta .tab-content {
-        background-color: #fff;
-
-    }
-
-    .modal-tarjeta .row-logos .bqb-col {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 1rem;
-    }
-
-    .modal-tarjeta .row-logos img {
-        max-width: 80%;
-    }
-
-    /* INPUTS */
-
-    .modal-tarjeta .input-date-wrapper {
-        display: flex;
-    }
-
-    .modal-tarjeta .input-date-wrapper input {
-        width: 50%;
-    }
-
-    .modal-tarjeta .input-date-wrapper input:first-child {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .modal-tarjeta .input-date-wrapper input:last-child {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-radius: 0;
-    }
-
-    .modal-tarjeta .input-date-wrapper input::-webkit-outer-spin-button,
-    .modal-tarjeta .input-date-wrapper input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Firefox */
-    .modal-tarjeta .input-date-wrapper input {
-        -moz-appearance: textfield;
-    }
-
-    .modal-tarjeta input {
-        text-transform: uppercase;
-    }
-
-    ::-webkit-input-placeholder {
-        /* WebKit browsers */
-        text-transform: none;
-    }
-
-    :-moz-placeholder {
-        /* Mozilla Firefox 4 to 18 */
-        text-transform: none;
-    }
-
-    ::-moz-placeholder {
-        /* Mozilla Firefox 19+ */
-        text-transform: none;
-    }
-
-    :-ms-input-placeholder {
-        /* Internet Explorer 10+ */
-        text-transform: none;
-    }
-
-    ::placeholder {
-        /* Recent browsers */
-        text-transform: none;
-    }
-
-    @media (min-width: 768px) {
-        .card-container {
-            padding-top: 26px;
-        }
-
-    }
-
-    @media (max-width: 768px) {
-
-        li.new-payment-method-item button,
-        li.new-payment-method-item .form-check-label {
-            padding: .5rem 1rem;
-        }
-
-        li.new-payment-method-item input[type=radio] {
-            right: 1rem;
-        }
-
-        li.new-payment-method-item .form-check-label {
-            gap: .75rem;
-        }
-
-        li.new-payment-method-item .form-check-label img {
-            max-width: 100px;
-        }
-
-        li.new-payment-method-item button p {
-            font-size: 1.3rem;
-        }
-
-        li.new-payment-method-item label span {
-            font-size: 1.2rem;
-        }
-
-        .modal-tarjeta .modal-dialog {
-            max-width: 100%;
-            border-radius: 0;
-            height: 100%;
-            margin: 0;
-        }
-
-        .modal-tarjeta .modal-content {
-            border-radius: 0;
-            height: 100%;
-            box-shadow: none;
-            border: none;
-        }
-
-        .reverse-mobile {
-            flex-direction: column-reverse;
-        }
-    }
 </style>
 
 <body>
@@ -405,11 +27,12 @@
         <!-- Modal Tarjeta -->
         <div class="modal  modal-tarjeta" id="modalFormTarjeta" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="modalFormTarjetaLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalFormTarjetaLabel">Pagar con tarjeta de crédito</h5>
-                        <button type="button" class="close modal-close" aria-label="Close" data-bs-dismiss="modal" id="func">
+                        <button type="button" class="close modal-close" aria-label="Close" data-bs-dismiss="modal"
+                            id="func">
                             <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
@@ -438,7 +61,7 @@
                                         <!-- WRAPPER FECHA EXPIRACION Y CODIGO DE SEGURIDAD -->
                                         <div class="bqb-col-12">
                                             <div class="bqb-row">
-                                                <div class="bqb-col-md-6">
+                                                <div class="bqb-col-6">
                                                     <div class="bqb-row">
                                                         <div class="bqb-col-12">
                                                             <label>Fecha de expiración</label>
@@ -481,8 +104,8 @@
                                             </div>
                                         </div>
                                         <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
-                                            <button  type="submit" class="button-primary w-100 "
-                                                style="width: 100%;" disabled>PAGAR</button>
+                                            <button type="submit" class="button-primary w-100 " style="width: 100%;"
+                                                disabled>PAGAR</button>
                                         </div>
                                     </div>
                                 </form>
@@ -502,12 +125,12 @@
         <!-- Modal Dos Tarjetas -->
         <div class="modal modal-tarjeta" id="modalFormDosTarjetas" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="modalFormDosTarjetasLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalFormDosTarjetasLabel"> <img src="images/icon-dostarjetas.svg"
-                                alt=""> Pagar con dos tarjetas de crédito</h5>
-                        <button type="button" class="modal-close close" aria-label="Close" data-bs-dismiss="modal" id="func">
+                        <h5 class="modal-title" id="modalFormDosTarjetasLabel"> Pagar con dos tarjetas de crédito</h5>
+                        <button type="button" class="modal-close close" aria-label="Close" data-bs-dismiss="modal"
+                            id="func">
                             <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
@@ -528,8 +151,10 @@
                             <div class="tab-pane fade show active" id="tabTarjeta1" role="tabpanel"
                                 aria-labelledby="tabTarjeta1-tab">
                                 <div class="bqb-row">
-                                    <div class="bqb-col-md-7">
-                                        <p>Con esta tarjeta vas a pagar ARS 16.000</p>
+                                    <div class="bqb-col-12">
+                                        <p style="font-size: 1.5rem; color: gray;">Con esta tarjeta vas a pagar <span
+                                                class="card-ammount">ARS 16.000</span></p>
+                                        <hr>
                                     </div>
                                 </div>
                                 <div class="bqb-row reverse-mobile">
@@ -557,37 +182,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!-- WRAPPER FECHA EXPIRACION Y CODIGO DE SEGURIDAD -->
                                                 <div class="bqb-col-12">
                                                     <div class="bqb-row">
-                                                        <div class="bqb-col-md-6">
+                                                        <div class="bqb-col-6">
                                                             <div class="bqb-row">
                                                                 <div class="bqb-col-12">
                                                                     <label>Fecha de expiración</label>
                                                                 </div>
-                                                                <!--  <div class="bqb-col-12">
-                                                                        <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric"
-                                                                            name="expiryCard">
-                                                                    </div> -->
-                                                                <div class="bqb-col-12">
-                                                                    <div class="bqb-row">
-                                                                        <div class="bqb-col-6">
-                                                                            <input
-                                                                                class=" bqb-form-control cards-months"
-                                                                                type="number" name="expMonth"
-                                                                                id="validUntilMountCard-1">
-                                                                        </div>
-                                                                        <div class="bqb-col-6">
-                                                                            <input type="number" name="expYear"
-                                                                                class=" bqb-form-control card-years"
-                                                                                id="validUntilYearCard-1">
-                                                                        </div>
-                                                                    </div>
+                                                                <div class="bqb-col-12 input-date-wrapper">
+                                                                    <input class=" bqb-form-control cards-months"
+                                                                        type="number" name="expMonth"
+                                                                        id="validUntilMountCard-1" placeholder="MM">
+                                                                    <input type="number" name="expYear"
+                                                                        class=" bqb-form-control card-years"
+                                                                        id="validUntilYearCard-1" placeholder="AA">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="offset-md-1 bqb-col-md-5">
+                                                        <div class="bqb-col-6">
                                                             <div class="bqb-form-group"> <label
-                                                                    for="creditCardCode0">Código de
+                                                                    for="creditCardCode1">Código de
                                                                     seguridad</label>
                                                                 <div class="form-code-wrapper"> <input
                                                                         class="bqb-form-control"
@@ -603,6 +219,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- FIN WRAPPER FECHA EXPIRACION Y CODIGO DE SEGURIDAD -->
+
+
                                                 <div class="bqb-col-12">
                                                     <hr>
                                                     <div class="method-payment method-payment-1 active"
@@ -617,12 +236,14 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
+                                                    <button class="button-primary w-100" style="width: 100%;"
+                                                        id="switchTarjeta2" disabled type="submit"
+                                                        onclick="event.preventDefault();">INGRESAR SEGUNDA
+                                                        TARJETA</button>
+                                                </div>
                                             </div>
                                         </form>
-                                        <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
-                                            <button class="button-primary w-100" style="width: 100%;"
-                                                id="switchTarjeta2" disabled type="submit">INGRESAR SEGUNDA TARJETA</button>
-                                        </div>
                                     </div>
                                     <div class="bqb-col-md-5">
                                         <div class="card-container">
@@ -636,8 +257,10 @@
                             </div>
                             <div class="tab-pane fade" id="tabTarjeta2" role="tabpanel" aria-labelledby="tab-tarjeta2">
                                 <div class="bqb-row">
-                                    <div class="bqb-col-md-7">
-                                        <p>Con esta tarjeta vas a pagar ARS 16.000</p>
+                                    <div class="bqb-col-12">
+                                        <p style="font-size: 1.5rem; color: gray;">Con esta tarjeta vas a pagar <span
+                                                class="card-ammount">ARS 16.000</span></p>
+                                        <hr>
                                     </div>
                                 </div>
                                 <div class="bqb-row reverse-mobile">
@@ -665,35 +288,26 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!-- WRAPPER FECHA EXPIRACION Y CODIGO DE SEGURIDAD -->
                                                 <div class="bqb-col-12">
                                                     <div class="bqb-row">
-                                                        <div class="bqb-col-md-6">
+                                                        <div class="bqb-col-6">
                                                             <div class="bqb-row">
                                                                 <div class="bqb-col-12">
                                                                     <label>Fecha de expiración</label>
                                                                 </div>
-                                                                <!--  <div class="bqb-col-12">
-                                                                    <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric"
-                                                                        name="expiryCard">
-                                                                </div> -->
-                                                                <div class="bqb-col-12">
-                                                                    <div class="bqb-row">
-                                                                        <div class="bqb-col-6">
-                                                                            <input
-                                                                                class=" bqb-form-control cards-months"
-                                                                                type="number" name="expMonth"
-                                                                                id="validUntilMountCard-2">
-                                                                        </div>
-                                                                        <div class="bqb-col-6">
-                                                                            <input type="number" name="expYear"
-                                                                                class=" bqb-form-control card-years"
-                                                                                id="validUntilYearCard-2">
-                                                                        </div>
-                                                                    </div>
+                                                                <div class="bqb-col-12 input-date-wrapper">
+                                                                    <input class=" bqb-form-control cards-months"
+                                                                        type="number" name="expMonth"
+                                                                        id="validUntilMountCard-2" placeholder="MM">
+                                                                    <input type="number" name="expYear"
+                                                                        class=" bqb-form-control card-years"
+                                                                        id="validUntilYearCard-2" placeholder="AA">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="offset-md-1 bqb-col-md-5">
+                                                        <div class="bqb-col-6">
                                                             <div class="bqb-form-group"> <label
                                                                     for="creditCardCode2">Código de
                                                                     seguridad</label>
@@ -711,6 +325,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- FIN WRAPPER FECHA EXPIRACION Y CODIGO DE SEGURIDAD -->
+
                                                 <div class="bqb-col-12">
                                                     <hr>
                                                     <div class="method-payment method-payment-2 active"
@@ -725,8 +341,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
-                                                    <button class="button-primary w-100"
-                                                        style="width: 100%;"  type="submit" disabled>PAGAR</button>
+                                                    <button class="button-primary w-100" style="width: 100%;"
+                                                        type="submit" disabled>PAGAR</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -752,8 +368,11 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalMediosPagoLabel">Medios de pago disponibles</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="modalMediosPagoLabel"><strong>Medios de pago disponibles</strong>
+                        </h5>
+                        <button type="button" class="modal-close close" aria-label="Close" data-bs-dismiss="modal"
+                            id="func">
+                            <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
 
@@ -780,20 +399,18 @@
                         <h3>Otros medios de pago</h3>
                         <div class="bqb-row row-logos">
                             <div class="bqb-col">
-                                <img src="images/logo-mercadopago.svg" alt="">
+                                <img src="images/logo-mercadopago.svg" alt="Logo Mercado Pago">
                                 <p>Tarjeta de débito o dinero en cuenta</p>
                             </div>
                             <div class="bqb-col">
-                                <img src="images/logo-paypal.svg" alt="">
+                                <img src="images/logo-paypal.svg" alt="Logo Paypal">
                             </div>
                             <div class="bqb-col">
-                                <img src="images/logo-rapipago.svg" alt="">
+                                <img src="images/logo-rapipago.svg" alt="Logo Rapipago">
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="button-primary" disabled data-bs-dismiss="modal">Cerrar</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -806,6 +423,204 @@
 
                     </div>
                     <div class="bqb-col-12 bqb-col-lg-8">
+                        <div class="checkout-card payment-additionals d-none-" style="margin-bottom:2rem">
+                            <div class="bqb-col">
+
+                                <!-- Module menu -->
+                                <div class="bqb-row additionals-menu">
+                                    <!-- hasta tener definido diseño -->
+                                    <div class="bqb-col-12">
+                                        <h2>Adicionales</h2>
+                                        <p>Mejorá aún más tu experiencia de viaje con estos servicios.</p>
+                                        <ul style="display:none">
+                                            <!-- hasta tener definido diseño -->
+                                            <li class="bqb-btn btn-navigation active" data-tab="items-upgrades">
+                                                <span class="fa fa-arrow-up" aria-hidden="true"></span>
+                                                <span>Upgrades</span>
+                                            </li>
+                                            <li class="bqb-btn btn-navigation" data-tab="items-services">
+                                                <span class="fa fa-medkit" aria-hidden="true"></span>
+                                                <span>Servicios y asistencias</span>
+                                            </li>
+                                            <li class="bqb-btn btn-navigation" data-tab="items-activities">
+                                                <span class="fa fa-ticket" aria-hidden="true"></span>
+                                                <span>actividades</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Module sections -->
+                                <div class="additionals-items items-upgrades-active">
+                                    <!-- Section upgrades -->
+                                    <div class="items-upgrades">
+                                        <div class="bqb-row">
+                                            <div class="bqb-col-12" id="cont-adic-ajax">
+                                                <div id="loading-wrapper" class="bqb-loader-area-spinner-bg">
+                                                    <div class="bqb-loader-spinner bqb-loader-area-spinner"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkout-card payment-method" style="margin-bottom: 2rem; ">
+                            <form id="frm-edit-data-location" novalidate="novalidate">
+                                <div class="payment-data-inputs mb-40">
+
+                                    <!-- Titulo del Stage : Begin -->
+                                    <div class="wrapper-stage-title" id="txtData">
+                                        <h2> Datos de facturación
+                                            <!-- texto = "Datos de Localizacion" -->
+                                        </h2>
+                                    </div>
+
+
+                                    <!-- TITULAR PAGO -->
+                                    <div class="bqb-row">
+
+                                        <div class="bqb-col-12 bqb-col-md-6 bqb-form-group">
+                                            <label>Nombre</label>
+                                            <input class="bqb-form-control" id="payerName" type="TEXT" name="payerName"
+                                                value="" size="50" maxlength="50">
+
+                                            <span class="form__error-message" id="infoPaisResidencia"></span>
+                                        </div>
+
+                                        <div class="bqb-col-12 bqb-col-md-6 bqb-form-group">
+                                            <label>Apellido</label>
+                                            <input class="bqb-form-control" id="payerLastName" type="TEXT"
+                                                name="payerLastName" value="" size="50" maxlength="50">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="bqb-row">
+
+                                        <div class="bqb-col-6 bqb-col-md-3 bqb-form-group">
+                                            <label>Fecha de Nacimiento</label>
+                                            <input class="bqb-form-control" id="payerBirthDate" type="date"
+                                                name="payerBirthDate" value="" size="50" maxlength="50">
+
+                                            <span class="form__error-message" id="infoPaisResidencia"></span>
+                                        </div>
+
+                                        <div class="bqb-col-6 bqb-col-md-3 bqb-form-group">
+                                            <label>Categoría Fiscal</label>
+                                            <select class="bqb-select" id="taxCategory" name="taxCategory"
+                                                onchange="cPayment.setDocumentType()">
+                                                <option value="4">Consumidor Final</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="bqb-col-12 bqb-col-md-6 bqb-form-group">
+                                            <label>Tipo y N° Identificación Fiscal</label>
+                                            <div class="bqb-row">
+                                                <div class="bqb-col-4">
+                                                    <select class="bqb-select" id="documentType" name="documentType"
+                                                        doc-type-user="">
+                                                        <option value="">Seleccioná</option>
+                                                        <option value="1">DNI</option>
+                                                        <option value="2">CI</option>
+                                                        <option value="6">PAS</option>
+                                                        <option value="13">CU</option>
+                                                    </select>
+                                                </div>
+                                                <div class="bqb-col-8">
+                                                    <input class="bqb-form-control" id="valueTaxCategory" type="TEXT"
+                                                        name="valueTaxCategory" size="50" maxlength="50" value="">
+                                                </div>
+                                            </div>
+                                            <!-- 							<input class="bqb-form-control" id="payerLastName" type="TEXT" name="payerLastName" value="" size="50" maxlength="50"> -->
+                                        </div>
+
+                                    </div>
+
+                                    <!-- FIN TITULAR PAGO -->
+
+                                    <!-- TELEFONO -->
+                                    <div class="bqb-row">
+
+                                        <!-- Prefijo -->
+                                        <div class="bqb-col-6 bqb-col-md-3 bqb-form-group">
+                                            <label class="no-capitalization" for="PhonePrefix"> Prefijo</label>
+
+                                            <span class="select2 select2-container select2-container--default" dir="ltr"
+                                                data-select2-id="1" style="width: 100%;"><span class="selection"><span
+                                                        class="select2-selection select2-selection--single"
+                                                        role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                        tabindex="0" aria-disabled="false"
+                                                        aria-labelledby="select2-PhonePrefix-container"><span
+                                                            class="select2-selection__rendered"
+                                                            id="select2-PhonePrefix-container" role="textbox"
+                                                            aria-readonly="true" title="Argentina
+                                                            (+54)"> Argentina
+                                                            (+54) </span><span class="select2-selection__arrow"
+                                                            role="presentation"><b
+                                                                role="presentation"></b></span></span></span><span
+                                                    class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+
+                                        <!-- Codigo de Area -->
+                                        <div class="bqb-col-6 bqb-col-md-3 bqb-form-group">
+                                            <label class="no-capitalization" for="PhoneAreaCode"> Código de área</label>
+                                            <input class="bqb-form-control" id="PhoneAreaCode" type="TEXT"
+                                                name="codarea1" value="" size="5" maxlength="5">
+                                            <!-- 					<span class="form__error-message"></span> -->
+                                        </div>
+
+                                        <!-- Telefono -->
+                                        <div class="bqb-col-12 bqb-col-md-6 bqb-form-group">
+                                            <label for="PhoneNumber"> Teléfono</label>
+                                            <input class="bqb-form-control" id="PhoneNumber" type="TEXT" name="phone1"
+                                                value="" size="9" maxlength="9" min="0">
+                                            <!-- 					<span class="form__error-message" id="infoTelefono"></span> -->
+                                        </div>
+
+                                    </div>
+
+                                    <div class="wrapper-stage-title bqb-col-12"></div>
+
+                                    <!-- DIRECCION -->
+                                    <div class="bqb-row">
+
+                                        <div class="bqb-col-12 bqb-col-md-6 bqb-form-group">
+                                            <label class="no-capitalization"> País de residencia</label>
+                                            <span class="select2 select2-container select2-container--default" dir="ltr"
+                                                data-select2-id="2" style="width: 100%;"><span class="selection"><span
+                                                        class="select2-selection select2-selection--single"
+                                                        role="combobox" aria-haspopup="true" aria-expanded="false"
+                                                        tabindex="0" aria-disabled="false"
+                                                        aria-labelledby="select2-country-container"><span
+                                                            class="select2-selection__rendered"
+                                                            id="select2-country-container" role="textbox"
+                                                            aria-readonly="true" title="Argentina">
+                                                            Argentina</span><span class="select2-selection__arrow"
+                                                            role="presentation"><b
+                                                                role="presentation"></b></span></span></span><span
+                                                    class="dropdown-wrapper" aria-hidden="true"></span></span>
+
+                                            <span class="form__error-message" id="infoPaisResidencia"></span>
+                                        </div>
+
+                                        <div class="bqb-col-12 bqb-col-md-6 bqb-form-group">
+                                            <!-- Domicilio -->
+                                            <label> Dirección</label>
+                                            <input class="bqb-form-control" id="ShippingAddress" type="TEXT"
+                                                name="address" value="" size="50" maxlength="50">
+                                        </div>
+
+                                        <div class="wrapper-stage-title col-12">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- 7. DATOS DE LOCALIZACION DE USUARIO : End -->
+
+                        </div>
                         <div id="cont-payment-methods" class="checkout-card payment-method section-credit-card-active"
                             style="margin-bottom: 4rem;">
                             <h2>Formas de pago</h2>
@@ -814,7 +629,7 @@
 
                             <div class="d-flex justify-content-between align-items-end">
                                 <h3>Tarjeta de crédito</h3>
-                                <p style="text-decoration: underline; font-size: 1rem; color: gray;"
+                                <p style="text-decoration: underline; font-size: 1.1rem; color: gray;"
                                     data-bs-toggle="modal" data-bs-target="#modalMediosPago">Ver tarjetas habilitadas
                                 </p>
                             </div>
@@ -851,9 +666,9 @@
                             <ul class="new-payment-method-menu">
                                 <li class="new-payment-method-item">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault3">
-                                        <label class="form-check-label" for="flexRadioDefault3">
+                                        <input class="form-check-input" type="radio" name="otherPaymentSelector"
+                                            id="otherPaymentMercadoPago">
+                                        <label class="form-check-label" for="otherPaymentMercadoPago">
                                             <img src="images/logo-mercadopago.svg" alt="Logo Mercado Pago">
                                             <span>Tarjeta de débito o <br>dinero en cuenta</span>
                                         </label>
@@ -861,18 +676,18 @@
                                 </li>
                                 <li class="new-payment-method-item">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="otherPaymentSelector"
+                                            id="otherPaymentPaypal">
+                                        <label class="form-check-label" for="otherPaymentPaypal">
                                             <img src="images/logo-paypal.svg" alt="Logo Paypal">
                                         </label>
                                     </div>
                                 </li>
                                 <li class="new-payment-method-item">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault4">
-                                        <label class="form-check-label" for="flexRadioDefault4">
+                                        <input class="form-check-input" type="radio" name="otherPaymentSelector"
+                                            id="otherPaymentRapipago">
+                                        <label class="form-check-label" for="otherPaymentRapipago">
                                             <img src="images/logo-rapipago.svg" alt="Logo RapiPago">
                                         </label>
                                     </div>
@@ -881,10 +696,183 @@
                         </div>
 
                     </div>
+                    <div class="bqb-col-12 bqb-col-lg-4 checkout-details details-col-right">
+
+                        <div class="final-price-mobile" onclick="cCommon.showDetailPriceMob();"> Precio final <i
+                                class="bqb-icon-chevron-down"></i>
+                        </div>
+
+                        <div class="checkout-card">
+                            <div class="details-trip">
+                                <h3>Detalle de la compra</h3>
+                                <div class="trip-body">
+                                    <h4>Ida</h4>
+                                    <h5>
+
+                                        <span class="search-date-format">jueves 20 <span>de</span> abril <span>de</span>
+                                            2023</span>
+                                    </h5>
+                                    <div class="body-times">
+                                        <span>07:30hs.</span>
+                                        <span class="times-icon icon-ship"><i class="bqb-icon-boarding-info"
+                                                aria-hidden="true"></i></span>
+                                        <span class="times-line line-ship"></span>
+                                        <span class="times-dot"></span>
+                                        <span>09:45hs.</span>
+                                    </div>
+                                    <ul class="body-legs">
+                                        <li>Buenos Aires</li>
+                                        <li></li>
+                                        <li>Montevideo</li>
+                                    </ul>
+                                    <div class="body-details">
+                                    </div>
+                                </div>
+
+                                <!-- Vuelta -->
+                                <div class="trip-body">
+                                    <h4>Vuelta</h4>
+                                    <h5>
+
+                                        <span class="search-date-format">jueves 20 <span>de</span> abril <span>de</span>
+                                            2023</span>
+                                    </h5>
+                                    <div class="body-times">
+                                        <span>19:30hs.</span>
+                                        <span class="times-icon icon-ship"><i class="bqb-icon-boarding-info"
+                                                aria-hidden="true"></i></span>
+                                        <span class="times-line line-ship"></span>
+                                        <span class="times-dot"></span>
+                                        <span>21:45hs.</span>
+                                    </div>
+                                    <ul class="body-legs">
+                                        <li>Montevideo</li>
+                                        <li></li>
+                                        <li>Buenos Aires</li>
+                                    </ul>
+                                    <div class="body-details">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="details-payment">
+                                <h3>Detalle del pago</h3>
+                                <div class="bqb-row" style="">
+                                    <div class="bqb-col-6">Tasas e Impuestos</div>
+                                    <div class="bqb-col-6 payment-digits text-right" id="import-tax">
+                                        <span class="price-trip">ARS</span>
+                                        <span id="total-reservation-tax">3.575
+                                            <!--3.575--></span>
+                                    </div>
+                                </div>
+                                <div class="bqb-row" style="">
+                                    <div class="bqb-col-6">Pasajes</div>
+                                    <div class="bqb-col-6 payment-digits text-right">
+                                        <span class="price-trip">ARS</span>
+                                        <span id="total-reservation-tickets">27.180
+                                            <!--27.180--></span>
+                                    </div>
+                                </div>
+
+
+                                <!-- ADICIONALES -->
+                                <div class="bqb-row" id="cont-addit-resume">
+
+                                </div><!-- FIN ADICIONALES -->
+
+                                <!-- AGREGAR IF RANGE MILLAS -->
+                                <!-- FIN RANGE MILLAS -->
+                                <div class="bqb-row payment-bold" style="margin-top:7px">
+                                    <div class="bqb-col-6">Total Pasajes<span style="display:none">30.755</span></div>
+                                    <div class="bqb-col-6 payment-digits text-right">
+
+                                        <span class="price-trip">ARS</span>
+                                        <span id="total-reservation">30.755</span>
+
+                                    </div>
+                                </div>
+                                <div class="body-times cabin-selected" id="currency-icon">
+                                    <span class="cabin-price-pax">Mostrar importes en monedas extranjeras</span>
+                                    <i class="bqb-icon-chevron-down bqb-icon-margin-left" aria-hidden="true"> </i>
+                                </div>
+
+                                <div id="currency-type" class="">
+                                    <div class="body-times cabin-selected"><span class="cabin-price-pax">Real
+                                        </span><span id="tot_compra"> BRL&nbsp;<span id="valueIdCurrency-5">893.60
+                                            </span></span></div>
+                                    <div class="body-times cabin-selected"><span class="cabin-price-pax">Dolar
+                                        </span><span id="tot_compra"> USD&nbsp;<span id="valueIdCurrency-2">170.86
+                                            </span></span></div>
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                        <!-- Modulo : Resumen de Compra : End -->
+                        <!-- boton pagar o continuar -->
+                        <div class="section-cta justify-content-end" style="margin-top: 20px;" id="final-paymet-cont">
+
+                            <div class="terms-and-conditions__wrapper">
+                                <input type="checkbox" id="checkboxTermsAndConditions">
+                                <span class="custom-checkbox" for="#termsAndConditions"></span>
+                                <label for="">Acepto los &nbsp;<b><span class="open-modal" style="cursor: pointer"
+                                            onclick="terminosCondiciones();">terminos y condiciones</span></b></label>
+                            </div>
+                            <button class="button-primary disabled-pay" id="btnPay" style="display:block;"> Pagar
+                            </button>
+                            <button class="button-primary disabled-pay" type="submit" id="btnPayDataCard"
+                                style="display:none;"> Pagar </button>
+                        </div>
+                        <!-- fin boton pagar o continuar -->
+
+                    </div>
                 </div>
             </div>
         </div>
+        <section id="cluster-resumen" class="active" style="z-index: 1000">
 
+            <!-- BUTTON PARA ABRIR EL RESUMEN EXTENDIDO-->
+            <button class="btn" id="toggle-expandir" data-bs-toggle="modal" data-bs-target="#modalResumen">
+            </button>
+    
+    
+            <!-- CONTENEDOR INTERNO DE LA CAJA -->
+            <div class="bqb-container">
+                <div class="bqb-row">
+                 
+    
+                    <div class="offset-md-3 bqb-col-md-6">
+                        <div class="bqb-row">
+                             
+    
+                            <!-- PRECIO FINAL / COMPRAR -->
+                            <div class="offset-xl-1 bqb-col-xl-5 resumen-comprar">
+                                <div class="precio-final">
+                                    <p>Precio final</p>
+    
+                                    <!-- CIFRA PRECIO FINAL -->
+                                    <p id="precio-final-cifra">ARS 34.889</p>
+                                </div>
+    
+                                <!-- CONTENDOR BOTÓN COMPRAR -->
+                                <div class="cont-btn-next">
+                                    <a href="javascript:void(0)">
+                                        <button id="" class="button-primary bqb-btn-comprar" type="button"  >PAGAR</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- FIN PRECIO FINAL / COMPRAR -->
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </section>
     </main>
 
     <script src="https://www.buquebus.com/Portal/resources/js/lib/jQuery/jquery-3.5.0.min.js?version=1.12.6"></script>
@@ -905,100 +893,13 @@
     </script>
 
 
+    <!-- LIBRERÍA DE LA ANIMACIÓN DE LA TARJETA -->
     <script src="card.js"></script>
 
-    <script>
-        /* INICIAR TARJETAS / UNO POR TARJETA */
-        var c0 = new Card({
-            form: document.querySelector('.form-0'),
-            container: '.card-wrapper-0',
-            formSelectors: {
-                expiryInput: ['input[name="expMonth"]', 'input[name="expYear"]']
-            }
-        });
-        var c1 = new Card({
-            form: document.querySelector('.form-1'),
-            container: '.card-wrapper-1',
-            formSelectors: {
-                expiryInput: ['input[name="expMonth"]', 'input[name="expYear"]']
-            }
-        });
-        var c2 = new Card({
-            form: document.querySelector('.form-2'),
-            container: '.card-wrapper-2',
-            formSelectors: {
-                expiryInput: ['input[name="expMonth"]', 'input[name="expYear"]']
-            }
-        });
+    <!-- SCRIPTS DEL CHECKOUT -->
+    <script src="checkout.js"></script>
 
-        /* BOTON PARA PASAR A SEGUNDA TARJETA */
-        document.querySelector("#switchTarjeta2").addEventListener("click", function () {
-            var selectTab2 = document.querySelector('#tab-tarjeta2');
-            var tab2 = new bootstrap.Tab(selectTab2);
-            tab2.show();
-        });
 
-        /* ACTIVAR BOTONES SI LOS INPUTS ESTÁN COMPLETOS */
-     // get all forms
-const forms = document.querySelectorAll('form');
-
-// loop through each form
-forms.forEach((form) => {
-  // get submit button of this form
-  const submitBtn = form.querySelector('button[type="submit"]');
-
-  // add event listener to each input field of this form
-  form.querySelectorAll('input[required]').forEach((input) => {
-    input.addEventListener('input', () => {
-      // check if all required input fields of this form are filled
-      const allInputsFilled = Array.from(form.querySelectorAll('input[required]')).every((input) => {
-        return input.checkValidity();
-      });
-      // enable or disable submit button of this form based on input fields
-      submitBtn.disabled = !allInputsFilled;
-
-      // check if there are other forms before and after this form
-      const prevForm = form.previousElementSibling;
-      const nextForm = form.nextElementSibling;
-
-      // check if previous form has any required input fields that are not filled
-      if (prevForm && prevForm.querySelectorAll('input[required]:not(:valid)').length > 0) {
-        prevForm.querySelector('button[type="submit"]').disabled = true;
-      } else if (prevForm) {
-        prevForm.querySelector('button[type="submit"]').disabled = false;
-      }
-
-      // check if next form has any required input fields that are not filled
-      if (nextForm && nextForm.querySelectorAll('input[required]:not(:valid)').length > 0) {
-        nextForm.querySelector('button[type="submit"]').disabled = true;
-      } else if (nextForm) {
-        nextForm.querySelector('button[type="submit"]').disabled = false;
-      }
-    });
-  });
-});
-
-        /* LIMPIAR INPUTS AL CERRAR EL MODAL */
-// get all modal close buttons
-const closeBtns = document.querySelectorAll('.modal-close');
-
-// loop through each close button
-closeBtns.forEach((closeBtn) => {
-  // add event listener to the close button
-  closeBtn.addEventListener('click', () => {
-    // get the parent modal element of the close button
-    const modal = closeBtn.closest('.modal');
-
-    // reset all form fields inside the modal
-    modal.querySelectorAll('input, textarea').forEach((field) => {
-      field.value = '';
-    });
-  });
-});
-        /* DESELECCIONAR OPCION DE OTROS MEDIOS DE PAGO SI SE ABRE UN MODAL DE TARJETA */
-
-        /* ACTIVAR BOTÓN DE PAGO SI SE SELECCIONA UN MEDIO DE PAGO (OTROS) */
-    </script>
 
 </body>
 
