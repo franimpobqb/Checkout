@@ -191,37 +191,80 @@
         display: block;
     }
 
-    .modal-tarjeta ul.tabs {
+    .modal-tarjeta .nav.nav-tabs {
         display: flex;
         align-items: center;
         justify-content: space-around;
         padding: 0;
         border-bottom: solid 1px #000;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
 
-    .modal-tarjeta .tabs li {
+    .modal-tarjeta .nav.nav-tabs li {
         font-weight: bold;
         font-size: 1.5rem;
         color: #0077c4;
         width: 50%;
         text-align: center;
-        padding: 1rem 2rem;
+        padding: 2rem;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
-        opacity: .5;
+
         transition: all .2s ease;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .modal-tarjeta .nav.nav-tabs li li:hover {
+        opacity: 1;
+    }
+
+
+
+    .modal-tarjeta .nav.nav-tabs button {
+        position: absolute;
+        transition: all .2s ease;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: none;
+        outline: none;
+        color: rgb(145, 145, 145);
+        text-transform: uppercase;
+        font-weight: bold;
+        border-bottom: solid 3px #ffffff00;
         cursor: pointer;
     }
 
-    .modal-tarjeta .tabs li:hover {
+    .modal-tarjeta .nav.nav-tabs button.active {
+        color: #0077c4;
         opacity: 1;
     }
 
-    .modal-tarjeta .tabs li.active {
-        border-bottom: solid 3px #0077c4;
+    .modal-tarjeta .nav.nav-tabs li:first-child button:after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        height: 3px;
+        width: 100%;
+        background-color: #0077c4;
         opacity: 1;
+        transition: all .2s ease;
     }
+
+    .modal-tarjeta .nav.nav-tabs li:first-child button.active:after {
+        right: 0;
+
+    }
+
+    .modal-tarjeta .nav.nav-tabs li:first-child button:not(.active):after {
+
+        right: -100%;
+
+    }
+
 
     .modal-tarjeta .tab-content {
         background-color: #fff;
@@ -302,7 +345,12 @@
         text-transform: none;
     }
 
+    @media (min-width: 768px) {
+        .card-container {
+            padding-top: 26px;
+        }
 
+    }
 
     @media (max-width: 768px) {
 
@@ -311,18 +359,26 @@
             padding: .5rem 1rem;
         }
 
+        li.new-payment-method-item input[type=radio] {
+            right: 1rem;
+        }
+
         li.new-payment-method-item .form-check-label {
             gap: .75rem;
         }
+
         li.new-payment-method-item .form-check-label img {
             max-width: 100px;
         }
+
         li.new-payment-method-item button p {
             font-size: 1.3rem;
         }
+
         li.new-payment-method-item label span {
             font-size: 1.2rem;
         }
+
         .modal-tarjeta .modal-dialog {
             max-width: 100%;
             border-radius: 0;
@@ -335,6 +391,10 @@
             height: 100%;
             box-shadow: none;
             border: none;
+        }
+
+        .reverse-mobile {
+            flex-direction: column-reverse;
         }
     }
 </style>
@@ -349,18 +409,17 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalFormTarjetaLabel">Pagar con tarjeta de crédito</h5>
-                        <button type="button" class="close" aria-label="Close" data-bs-dismiss="modal" id="func">
+                        <button type="button" class="close modal-close" aria-label="Close" data-bs-dismiss="modal" id="func">
                             <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
-                        <div class="bqb-row">
+                        <div class="bqb-row reverse-mobile">
                             <div class="bqb-col-md-7">
                                 <form class="method-form form-0 form-card-pay active" id="frm-edit-data-card"
                                     novalidate="novalidate"><input type="hidden" name="idPaymentGatewayOperation"
                                         value="">
 
                                     <div class="bqb-row">
-
                                         <div class="bqb-col-12">
                                             <div class="bqb-form-group"><label for="numberCard">Numero de
                                                     tarjeta</label><input class="bqb-form-control" id="numberCard-0"
@@ -375,6 +434,8 @@
                                                 <div class="invalid-tooltip">Por favor, ingresá un nombre válido</div>
                                             </div>
                                         </div>
+
+                                        <!-- WRAPPER FECHA EXPIRACION Y CODIGO DE SEGURIDAD -->
                                         <div class="bqb-col-12">
                                             <div class="bqb-row">
                                                 <div class="bqb-col-md-6">
@@ -382,24 +443,17 @@
                                                         <div class="bqb-col-12">
                                                             <label>Fecha de expiración</label>
                                                         </div>
-
                                                         <div class="bqb-col-12 input-date-wrapper">
-
-
                                                             <input class=" bqb-form-control cards-months" type="number"
                                                                 name="expMonth" id="validUntilMountCard-0"
                                                                 placeholder="MM">
-
-
                                                             <input type="number" name="expYear"
                                                                 class=" bqb-form-control card-years"
                                                                 id="validUntilYearCard-0" placeholder="AA">
-
-
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="offset-md-1 bqb-col-md-5">
+                                                <div class="bqb-col-6">
                                                     <div class="bqb-form-group"> <label for="creditCardCode0">Código de
                                                             seguridad</label>
                                                         <div class="form-code-wrapper"> <input class="bqb-form-control"
@@ -413,6 +467,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- FIN WRAPPER FECHA EXPIRACION Y CODIGO DE SEGURIDAD -->
+
                                         <div class="bqb-col-12">
                                             <hr>
                                             <div class="method-payment method-payment-0 active" id="payment-fees">
@@ -425,7 +481,8 @@
                                             </div>
                                         </div>
                                         <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
-                                            <button class="button-primary w-100" style="width: 100%;">PAGAR</button>
+                                            <button  type="submit" class="button-primary w-100 "
+                                                style="width: 100%;" disabled>PAGAR</button>
                                         </div>
                                     </div>
                                 </form>
@@ -438,40 +495,44 @@
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
         <!-- Modal Dos Tarjetas -->
-        <div class="modal fade modal-tarjeta" id="modalFormDosTarjetas" data-bs-backdrop="static"
-            data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalFormDosTarjetasLabel" aria-hidden="true">
+        <div class="modal modal-tarjeta" id="modalFormDosTarjetas" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="modalFormDosTarjetasLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalFormDosTarjetasLabel">Pagar con tarjeta de crédito</h5>
-                        <button type="button" class="close" aria-label="Close" data-bs-dismiss="modal" id="func">
+                        <h5 class="modal-title" id="modalFormDosTarjetasLabel"> <img src="images/icon-dostarjetas.svg"
+                                alt=""> Pagar con dos tarjetas de crédito</h5>
+                        <button type="button" class="modal-close close" aria-label="Close" data-bs-dismiss="modal" id="func">
                             <span aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                    data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                                <button class="nav-link active" id="tabTarjeta1-tab" data-bs-toggle="tab"
+                                    data-bs-target="#tabTarjeta1" type="button" role="tab" aria-controls="tabTarjeta1"
                                     aria-selected="true">Tarjeta 1</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item" role="presentation" style="cursor: inherit;">
                                 <button class="nav-link" id="tab-tarjeta2" data-bs-toggle="tab"
-                                    data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
-                                    aria-selected="false">Tarjeta
-                                    2</button>
+                                    data-bs-target="#tabTarjeta2" type="button" role="tab" aria-controls="tabTarjeta2"
+                                    aria-selected="false" style="pointer-events: none;">Tarjeta 2</button>
                             </li>
 
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
+                            <div class="tab-pane fade show active" id="tabTarjeta1" role="tabpanel"
+                                aria-labelledby="tabTarjeta1-tab">
                                 <div class="bqb-row">
+                                    <div class="bqb-col-md-7">
+                                        <p>Con esta tarjeta vas a pagar ARS 16.000</p>
+                                    </div>
+                                </div>
+                                <div class="bqb-row reverse-mobile">
                                     <div class="bqb-col-md-7">
                                         <form class="method-form form-1 form-card-pay active" id="frm-edit-data-card"
                                             novalidate="novalidate"><input type="hidden"
@@ -560,7 +621,7 @@
                                         </form>
                                         <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
                                             <button class="button-primary w-100" style="width: 100%;"
-                                                id="switchTarjeta2">INGRESAR SEGUNDA TARJETA</button>
+                                                id="switchTarjeta2" disabled type="submit">INGRESAR SEGUNDA TARJETA</button>
                                         </div>
                                     </div>
                                     <div class="bqb-col-md-5">
@@ -573,8 +634,13 @@
 
 
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="tab-tarjeta2">
+                            <div class="tab-pane fade" id="tabTarjeta2" role="tabpanel" aria-labelledby="tab-tarjeta2">
                                 <div class="bqb-row">
+                                    <div class="bqb-col-md-7">
+                                        <p>Con esta tarjeta vas a pagar ARS 16.000</p>
+                                    </div>
+                                </div>
+                                <div class="bqb-row reverse-mobile">
                                     <div class="bqb-col-md-7">
                                         <form class="method-form form-2 form-card-pay active" id="frm-edit-data-card"
                                             novalidate="novalidate"><input type="hidden"
@@ -660,7 +726,7 @@
                                                 </div>
                                                 <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
                                                     <button class="button-primary w-100"
-                                                        style="width: 100%;">PAGAR</button>
+                                                        style="width: 100%;"  type="submit" disabled>PAGAR</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -681,7 +747,7 @@
         </div>
 
         <!-- Modal Medios de Pago -->
-        <div class="modal fade modal-tarjeta" id="modalMediosPago" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="modalMediosPago" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="modalMediosPagosLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -872,8 +938,63 @@
             tab2.show();
         });
 
-        /* LIMPIAR INPUTS AL CERRAR EL MODAL */
+        /* ACTIVAR BOTONES SI LOS INPUTS ESTÁN COMPLETOS */
+     // get all forms
+const forms = document.querySelectorAll('form');
 
+// loop through each form
+forms.forEach((form) => {
+  // get submit button of this form
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  // add event listener to each input field of this form
+  form.querySelectorAll('input[required]').forEach((input) => {
+    input.addEventListener('input', () => {
+      // check if all required input fields of this form are filled
+      const allInputsFilled = Array.from(form.querySelectorAll('input[required]')).every((input) => {
+        return input.checkValidity();
+      });
+      // enable or disable submit button of this form based on input fields
+      submitBtn.disabled = !allInputsFilled;
+
+      // check if there are other forms before and after this form
+      const prevForm = form.previousElementSibling;
+      const nextForm = form.nextElementSibling;
+
+      // check if previous form has any required input fields that are not filled
+      if (prevForm && prevForm.querySelectorAll('input[required]:not(:valid)').length > 0) {
+        prevForm.querySelector('button[type="submit"]').disabled = true;
+      } else if (prevForm) {
+        prevForm.querySelector('button[type="submit"]').disabled = false;
+      }
+
+      // check if next form has any required input fields that are not filled
+      if (nextForm && nextForm.querySelectorAll('input[required]:not(:valid)').length > 0) {
+        nextForm.querySelector('button[type="submit"]').disabled = true;
+      } else if (nextForm) {
+        nextForm.querySelector('button[type="submit"]').disabled = false;
+      }
+    });
+  });
+});
+
+        /* LIMPIAR INPUTS AL CERRAR EL MODAL */
+// get all modal close buttons
+const closeBtns = document.querySelectorAll('.modal-close');
+
+// loop through each close button
+closeBtns.forEach((closeBtn) => {
+  // add event listener to the close button
+  closeBtn.addEventListener('click', () => {
+    // get the parent modal element of the close button
+    const modal = closeBtn.closest('.modal');
+
+    // reset all form fields inside the modal
+    modal.querySelectorAll('input, textarea').forEach((field) => {
+      field.value = '';
+    });
+  });
+});
         /* DESELECCIONAR OPCION DE OTROS MEDIOS DE PAGO SI SE ABRE UN MODAL DE TARJETA */
 
         /* ACTIVAR BOTÓN DE PAGO SI SE SELECCIONA UN MEDIO DE PAGO (OTROS) */
