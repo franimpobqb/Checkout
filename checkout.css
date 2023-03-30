@@ -158,9 +158,7 @@
         display: none;
         margin-top: -1rem;
         margin-bottom: 4rem;
-        padding: 2rem;
-        background: #f8fcff;
-        border: solid 1px #efefef;
+
         border-radius: 10px;
 
     }
@@ -407,9 +405,19 @@
             display: none;
         }
 
+        .form-tarjeta {
+            border: solid 1px #efefef;
+            padding: 2rem;
+            background: #f8fcff;
+        }
+
     }
 
     @media (max-width: 991.97px) {
+
+        li.new-payment-method-item label p {
+            font-size: 1.3rem;
+        }
 
         li.new-payment-method-item button,
         li.new-payment-method-item .form-check-label {
@@ -422,6 +430,7 @@
 
         li.new-payment-method-item .form-check-label {
             gap: .75rem;
+            max-width: 87%;
         }
 
         li.new-payment-method-item .form-check-label img {
@@ -435,7 +444,9 @@
         li.new-payment-method-item label span {
             font-size: 1.2rem;
         }
-
+        .form-tarjeta {
+          border-bottom: solid 1px #f3f3f3;
+        }
         .form-tarjeta .modal-dialog {
             max-width: 100%;
             border-radius: 0;
@@ -1137,7 +1148,7 @@ filter: drop-shadow(0 1px 1px black); */
         }
 
         .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
-            padding: 0 25px 10px;
+            padding: 15px 20px 30px 15px;
             position: fixed !important;
         }
 
@@ -1159,6 +1170,9 @@ filter: drop-shadow(0 1px 1px black); */
             padding-top: .5rem;
             padding-bottom: .5rem;
             box-shadow: rgba(0, 0, 0, 0.15) 0px -3px 12px;
+            text-transform: uppercase;
+            color: #0077c4;
+            font-weight: bold;
         }
 
         .final-price-mobile {
