@@ -128,9 +128,12 @@ paymentRadios.forEach(radio => {
             targetForm.style.display = 'block';
             document.getElementById('btnPay').disabled = true;
 
-            // Hacer focus automaticamente en el primer input
-            const firstInput = targetForm.querySelector('form input[name="cardNumber"]');
-            firstInput.focus();
+            // Hacer focus automaticamente en el primer input (por el momento desactivado)
+            if (!/Mobi/.test(navigator.userAgent)) {
+                const firstInput = targetForm.querySelector('form input[name="cardNumber"]');
+                firstInput.focus();
+            }
+
 
 
             // Si se selecciona otro medio de pago ocultar el form de tarjeta y activar el boton de Pagar
