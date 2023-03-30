@@ -25,7 +25,8 @@ var c2 = new Card({
 /* ----- SELECTORES ----- */
 
 /* SELECTORS */
-const cardFormsContainer = document.querySelectorAll('.form-tarjeta');
+const cardFormsContainer = document.getElementById('creditCardFormContainer');
+const cardForms = document.querySelectorAll('.form-tarjeta');
 const forms = document.querySelectorAll('.form-tarjeta form');
 const paymentRadios = document.querySelectorAll('input[name="paymentSelector"]');
 const payButton = document.querySelector('#btnPay');
@@ -122,7 +123,7 @@ paymentRadios.forEach(radio => {
         if (this.classList.contains('input-seleccionar-tarjeta')) {
             const targetId = this.getAttribute('data-target');
             const targetForm = document.querySelector(`.form-tarjeta.${targetId}`);
-            cardFormsContainer.forEach(form => {
+            cardForms.forEach(form => {
                 form.style.display = 'none';
             });
             targetForm.style.display = 'block';
@@ -132,13 +133,16 @@ paymentRadios.forEach(radio => {
             if (!/Mobi/.test(navigator.userAgent)) {
                 const firstInput = targetForm.querySelector('form input[name="cardNumber"]');
                 firstInput.focus();
+            } else {
+                cardFormsContainer.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
-
 
 
             // Si se selecciona otro medio de pago ocultar el form de tarjeta y activar el boton de Pagar
         } else {
-            cardFormsContainer.forEach(form => {
+            cardForms.forEach(form => {
                 form.style.display = 'none';
             });
             payButton.disabled = false;
@@ -176,3 +180,6 @@ window.addEventListener('scroll', function () {
         sidebar.classList.remove('fijar');
     }
 });
+
+
+

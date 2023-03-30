@@ -1159,7 +1159,7 @@
         formSelectors: {
           numberInput: 'input[name="cardNumber"]',
           expiryInput: 'input[name="expDate"]',
-          cvcInput: 'input[name="cvcCard"]',
+          cvcInput: 'input[name="cvv"]',
           nameInput: 'input[name="cardHolder"]'
         },
         cardSelectors: {
