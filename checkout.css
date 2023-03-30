@@ -1138,6 +1138,7 @@ filter: drop-shadow(0 1px 1px black); */
 
         .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
             padding: 0 25px 10px;
+            position: fixed !important;
         }
 
         .final-price-mobile {
@@ -1151,7 +1152,7 @@ filter: drop-shadow(0 1px 1px black); */
             top: -3rem;
             width: 200px;
             left: calc(50% - 100px);
-             background-color: #fff;
+            background-color: #fff;
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
             border: none;
@@ -1161,6 +1162,6 @@ filter: drop-shadow(0 1px 1px black); */
         }
 
         .final-price-mobile {
-content: none;
+            content: none;
         }
     }
