@@ -21,6 +21,24 @@ var c2 = new Card({
     }
 });
 
+
+/* ----- SELECTORES ----- */
+
+/* SELECTORS */
+const cardFormsContainer = document.querySelectorAll('.form-tarjeta');
+const forms = document.querySelectorAll('.form-tarjeta form');
+const paymentRadios = document.querySelectorAll('input[name="paymentSelector"]');
+const payButton = document.querySelector('#btnPay');
+const expMonthInputs = document.querySelectorAll('input[name="expMonth"]');
+const expYearInputs = document.querySelectorAll('input[name="expYear"]');
+const closeBtns = document.querySelectorAll('.modal-close');
+const modalTarjetas = document.querySelectorAll('.modal-tarjeta');
+const switchTarjeta2Btn = document.querySelector("#switchTarjeta2");
+
+
+
+/* ----- FUNCIONES ----- */
+
 /* BOTON PARA PASAR A SEGUNDA TARJETA EN MODAL DE PAGO CON DOS TARJETAS */
 document.querySelector("#switchTarjeta2").addEventListener("click", function () {
     var selectTab2 = document.querySelector('#tab-tarjeta2');
@@ -30,7 +48,6 @@ document.querySelector("#switchTarjeta2").addEventListener("click", function () 
 
 /* ACTIVAR BOTONES SI LOS INPUTS ESTÁN COMPLETOS */
 /* Habria que agregarle alguna validacion para que ademas verifique que esten completados correctamente los inputs (hasta ahora solo verifica que estén tengan algun contenido) */
-const forms = document.querySelectorAll('form');
 
 forms.forEach((form) => {
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -65,48 +82,10 @@ forms.forEach((form) => {
     });
 });
 
-/* LIMPIAR INPUTS AL CERRAR EL MODAL */
-const closeBtns = document.querySelectorAll('.modal-close');
-closeBtns.forEach((closeBtn) => {
-    closeBtn.addEventListener('click', () => {
-        const modal = closeBtn.closest('.modal');
 
-        modal.querySelectorAll('input, textarea').forEach((field) => {
-            field.value = '';
-            field.dispatchEvent(new Event('keyup'));
-        });
-
-        // Sacar el grafico de la tarjeta
-        modal.querySelector('.bqb-card').classList.remove('bqb-card-unknown');
-    });
-});
-
-/* ACTIVAR BOTÓN DE PAGO SI SE SELECCIONA UN MEDIO DE PAGO (OTROS) */
-const otherPaymentRadios = document.querySelectorAll('input[name="otherPaymentSelector"]');
-const payButton = document.querySelector('#btnPay');
-
-otherPaymentRadios.forEach((radio) => {
-    radio.addEventListener('change', () => {
-        const anyChecked = Array.from(otherPaymentRadios).some((otherRadio) => otherRadio
-            .checked);
-        if (anyChecked) {
-            //Si es rapipago
-            if (radio.id == 'otherPaymentRapipago') {
-                payButton.textContent = "Confirmar";
-            }
-            // para los demas
-            else {
-                payButton.textContent = "Pagar";
-            }
-            //para todos
-            payButton.classList.remove('disabled-pay');
-        }
-    });
-});
 
 /* LIMITAR INPUTS DE MES Y AÑO Y AL COMPLETAR EL MES PASAR A AÑO DIRECTAMENTE */
-const expMonthInputs = document.querySelectorAll('input[name="expMonth"]');
-const expYearInputs = document.querySelectorAll('input[name="expYear"]');
+
 expYearInputs.forEach((inputYear) => {
     inputYear.addEventListener('input', () => {
         let inputYearValue = inputYear.value;
@@ -132,14 +111,65 @@ expMonthInputs.forEach((inputMonth) => {
     });
 });
 
-/* SELECCIONAR EL PRIMER INPUT AUTOMATICAMENTE AL ABRIR EL MODAL */
-
-const modalTarjetas = document.querySelectorAll('.modal-tarjeta');
 
 
-modalTarjetas.forEach((modal) => {
-    const firstInput = modal.querySelector('form input[name="cardNumber"]');
-    modal.addEventListener('shown.bs.modal', () => {
-        firstInput.focus();
+
+/* MOSTRAR EL FORMULARIO DE UNA / DOS TARJETAS Y OCULTAR SI SE SELECCIONA OTRA OPCION DE PAGO */
+paymentRadios.forEach(radio => {
+    radio.addEventListener('change', function () {
+
+        // Si se selecciona pagar con tarjeta mostrar el form respectivo y desactivar / mantener desactivado el boton de Pagar
+        if (this.classList.contains('input-seleccionar-tarjeta')) {
+            const targetId = this.getAttribute('data-target');
+            const targetForm = document.querySelector(`.form-tarjeta.${targetId}`);
+            cardFormsContainer.forEach(form => {
+                form.style.display = 'none';
+            });
+            targetForm.style.display = 'block';
+            document.getElementById('btnPay').disabled = true;
+
+            // Hacer focus automaticamente en el primer input
+            const firstInput = targetForm.querySelector('form input[name="cardNumber"]');
+            firstInput.focus();
+
+
+            // Si se selecciona otro medio de pago ocultar el form de tarjeta y activar el boton de Pagar
+        } else {
+            cardFormsContainer.forEach(form => {
+                form.style.display = 'none';
+            });
+            payButton.disabled = false;
+            payButton.classList.remove('disabled-pay');
+        }
+
+        // Si es el boton de Rapipago cambiar el Boton a Confirmar
+        if (this.id == 'paymentRapipago') {
+            payButton.textContent = "Confirmar";
+        }
+        // para los demas
+        else {
+            payButton.textContent = "Pagar";
+        }
+
+        // Vaciar los inputs del form de tarjeta
+        document.querySelectorAll('.form-tarjeta input, .form-tarjeta textarea').forEach((field) => {
+            field.value = '';
+            field.dispatchEvent(new Event('keyup'));
+        });
+        // Volver el grafico de la tarjeta a gris
+        document.querySelectorAll('.bqb-card').forEach((bqbCard) => {
+            bqbCard.classList.remove('bqb-card-unknown');
+        });
     });
+});
+
+
+window.addEventListener('scroll', function () {
+    var sidebar = document.getElementById('sidebar');
+    var sidebarPosition = sidebar.getBoundingClientRect().top + window.pageYOffset;
+    if (window.pageYOffset > sidebarPosition) {
+        sidebar.classList.add('fijar');
+    } else {
+        sidebar.classList.remove('fijar');
+    }
 });

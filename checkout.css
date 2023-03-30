@@ -1,7 +1,7 @@
 ﻿    /* SELECTOR METODOS DE PAGO */
-    
+
     #cont-payment-methods h3,
-    .modal-tarjeta h3,
+    .form-tarjeta h3,
     #modalMediosPago h3 {
         color: #0077c4;
         text-transform: uppercase;
@@ -124,6 +124,14 @@
         max-width: 130px;
     }
 
+    li.new-payment-method-item label p {
+        color: #000;
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        text-align: left;
+    }
+
     li.new-payment-method-item label span {
         margin-bottom: 0;
         line-height: 1.2;
@@ -139,20 +147,25 @@
         accent-color: #0077c4;
     }
 
-    /* MODAL TARJETAS */
+    /* FORM  TARJETAS */
+
+
     .card-container {
         margin-bottom: 1.5rem;
     }
 
-    .modal-tarjeta .modal-dialog {
-        max-width: 750px;
+    .form-tarjeta {
+        display: none;
+        margin-top: -1rem;
+        margin-bottom: 4rem;
+        padding: 2rem;
+        background: #f8fcff;
+        border: solid 1px #efefef;
+        border-radius: 10px;
+
     }
 
-    .modal-tarjeta .modal-header {
-        box-shadow: none;
-    }
-
-    .modal-tarjeta .modal-footer {
+    .form-tarjeta .modal-footer {
         border: none;
         display: flex;
         flex-direction: column;
@@ -161,8 +174,10 @@
         gap: 2rem;
     }
 
-    .modal-tarjeta h5 {
+    .form-tarjeta h5 {
         font-weight: bold;
+        margin-bottom: 1rem;
+        color: #0077c4;
     }
 
     .row-logos {
@@ -176,6 +191,7 @@
         max-width: 70px;
         max-height: 40px;
     }
+
     .row-logos div {
         display: flex;
         text-align: center;
@@ -183,53 +199,50 @@
         gap: .75rem;
         flex-direction: column;
     }
-      .row-logos div img {
+
+    .row-logos div img {
         width: 100%;
         max-height: inherit;
         max-width: inherit;
-      }
+    }
 
     /* SELECTOR TABS */
 
-    .modal-tarjeta .tab-content>.tab-pane {
+
+    .form-tarjeta .tab-content>.tab-pane {
         display: none;
     }
 
-    .modal-tarjeta .tab-content>.active {
+    .form-tarjeta .tab-content>.active {
         display: block;
     }
 
-    .modal-tarjeta .nav.nav-tabs {
+    .form-tarjeta .nav.nav-tabs {
         display: flex;
         align-items: center;
         justify-content: space-around;
         padding: 0;
-        border-bottom: solid 1px #000;
+        border-bottom: solid 1px #d6d6d6;
         margin-bottom: 1rem;
     }
 
-    .modal-tarjeta .nav.nav-tabs li {
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: #0077c4;
+    .form-tarjeta .nav.nav-tabs li {
         width: 50%;
-        text-align: center;
+        color: #0077c4;
+
         padding: 2rem;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
-
         transition: all .2s ease;
         cursor: pointer;
         position: relative;
     }
 
-    .modal-tarjeta .nav.nav-tabs li li:hover {
+    .form-tarjeta .nav.nav-tabs li li:hover {
         opacity: 1;
     }
 
-
-
-    .modal-tarjeta .nav.nav-tabs button {
+    .form-tarjeta .nav.nav-tabs button {
         position: absolute;
         transition: all .2s ease;
         top: 0;
@@ -242,16 +255,19 @@
         color: rgb(145, 145, 145);
         text-transform: uppercase;
         font-weight: bold;
+        font-size: 1.4rem;
+
+        text-align: center;
         border-bottom: solid 3px #ffffff00;
         cursor: pointer;
     }
 
-    .modal-tarjeta .nav.nav-tabs button.active {
+    .form-tarjeta .nav.nav-tabs button.active {
         color: #0077c4;
         opacity: 1;
     }
 
-    .modal-tarjeta .nav.nav-tabs li:first-child button:after {
+    .form-tarjeta .nav.nav-tabs li:first-child button:after {
         content: "";
         position: absolute;
         bottom: -3px;
@@ -262,21 +278,44 @@
         transition: all .2s ease;
     }
 
-    .modal-tarjeta .nav.nav-tabs li:first-child button.active:after {
+    .form-tarjeta .nav.nav-tabs li:first-child button.active:after {
         right: 0;
     }
 
-    .modal-tarjeta .nav.nav-tabs li:first-child button:not(.active):after {
+    .form-tarjeta .nav.nav-tabs li:first-child button:not(.active):after {
         right: -100%;
     }
 
-
-    .modal-tarjeta .tab-content {
-        background-color: #fff;
-
+    .form-tarjeta button.button-secondary {
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        cursor: pointer;
+        transition: all .15s ease-in-out;
+        padding: 1.2rem 7rem;
+        font-size: 1.5rem;
+        height: auto;
+        border-radius: 1rem;
+        border: 0 none;
+        font-weight: 600;
+        color: #0077c4;
+        background-color: none;
+        text-transform: uppercase;
+        -webkit-transition: all .15s ease-in-out;
+        -moz-transition: all .15s ease-in-out;
+        -ms-transition: all .15s ease-in-out;
+        -o-transition: all .15s ease-in-out;
     }
 
-    .modal-tarjeta .row-logos .bqb-col {
+    .form-tarjeta button.button-secondary:disabled {
+        background: none;
+        color: gray;
+        transition: all .15s ease-in-out;
+    }
+
+    .form-tarjeta .row-logos .bqb-col {
         display: flex;
         text-align: center;
         align-items: center;
@@ -285,52 +324,52 @@
         gap: 1rem;
     }
 
-    .modal-tarjeta .row-logos img {
+    .form-tarjeta .row-logos img {
         max-width: 80%;
     }
 
-    .modal-tarjeta button {
+    .form-tarjeta button {
         transition: all .2s ease;
     }
 
-    .modal-tarjeta button:disabled {
+    .form-tarjeta button:disabled {
         background-color: gray;
         cursor: default;
     }
 
     /* INPUTS */
 
-    .modal-tarjeta .input-date-wrapper {
+    .form-tarjeta .input-date-wrapper {
         display: flex;
         gap: .25rem;
     }
 
-    .modal-tarjeta .input-date-wrapper input {
+    .form-tarjeta .input-date-wrapper input {
         width: 50%;
     }
 
-    .modal-tarjeta .input-date-wrapper input:first-child {
+    .form-tarjeta .input-date-wrapper input:first-child {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
 
-    .modal-tarjeta .input-date-wrapper input:last-child {
+    .form-tarjeta .input-date-wrapper input:last-child {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
 
-    .modal-tarjeta .input-date-wrapper input::-webkit-outer-spin-button,
-    .modal-tarjeta .input-date-wrapper input::-webkit-inner-spin-button {
+    .form-tarjeta .input-date-wrapper input::-webkit-outer-spin-button,
+    .form-tarjeta .input-date-wrapper input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
 
     /* Firefox */
-    .modal-tarjeta .input-date-wrapper input {
+    .form-tarjeta .input-date-wrapper input {
         -moz-appearance: textfield;
     }
 
-    .modal-tarjeta input {
+    .form-tarjeta input {
         text-transform: uppercase;
     }
 
@@ -359,7 +398,7 @@
         text-transform: none;
     }
 
-    @media (min-width: 991px) {
+    @media (min-width: 991.98px) {
         .card-container {
             padding-top: 26px;
         }
@@ -370,7 +409,7 @@
 
     }
 
-    @media (max-width: 991px) {
+    @media (max-width: 991.97px) {
 
         li.new-payment-method-item button,
         li.new-payment-method-item .form-check-label {
@@ -397,14 +436,14 @@
             font-size: 1.2rem;
         }
 
-        .modal-tarjeta .modal-dialog {
+        .form-tarjeta .modal-dialog {
             max-width: 100%;
             border-radius: 0;
             height: 100%;
             margin: 0;
         }
 
-        .modal-tarjeta .modal-content {
+        .form-tarjeta .modal-content {
             border-radius: 0;
             height: 100%;
             box-shadow: none;
@@ -1087,4 +1126,41 @@ filter: drop-shadow(0 1px 1px black); */
     .bqb-card.bqb-card-identified.no-radial-gradient .bqb-card-back:before {
         background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 1px, rgba(255, 255, 255, 0) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.03) 4px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), repeating-linear-gradient(210deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), -webkit-linear-gradient(-245deg, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.2) 70%, rgba(255, 255, 255, 0) 90%);
         background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 1px, rgba(255, 255, 255, 0) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.03) 4px), repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), repeating-linear-gradient(210deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), linear-gradient(-25deg, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.2) 70%, rgba(255, 255, 255, 0) 90%);
+    }
+
+
+    .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {}
+
+    @media (max-width: 991.98px) {
+        .checkout-details .checkout-card {
+            display: none;
+        }
+
+        .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
+            padding: 0 25px 10px;
+        }
+
+        .final-price-mobile {
+            position: absolute;
+            background: #fff;
+            display: flex;
+            gap: 1rem;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            top: -3rem;
+            width: 200px;
+            left: calc(50% - 100px);
+             background-color: #fff;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            border: none;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px -3px 12px;
+        }
+
+        .final-price-mobile {
+content: none;
+        }
     }
