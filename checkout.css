@@ -1152,7 +1152,7 @@ filter: drop-shadow(0 1px 1px black); */
         }
 
         .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
-
+margin-bottom: 0 !important;
         }
 
         .final-price-mobile {
