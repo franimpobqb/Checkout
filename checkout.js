@@ -205,3 +205,29 @@ function addClassIfKeyboardVisible() {
     });
   }
   
+
+  function adjustStickyElementForMobile() {
+    const stickyElement = document.getElementById('sidebar');
+    let originalPosition;
+    let originalOffsetTop;
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+    // Save the original position and offset of the sticky element
+    originalPosition = stickyElement.style.position;
+    originalOffsetTop = stickyElement.offsetTop;
+  
+    // Listen for the resize event to detect when the keyboard is visible
+    window.addEventListener('resize', () => {
+      const newViewportHeight = window.innerHeight;
+      if (isMobile && viewportHeight > newViewportHeight) {
+        // Keyboard is visible, adjust the position of the sticky element
+        stickyElement.style.position = 'fixed';
+        stickyElement.style.top = '0';
+      } else {
+        // Keyboard is hidden, reset the position of the sticky element
+        stickyElement.style.position = originalPosition;
+        stickyElement.style.top = originalOffsetTop + 'px';
+      }
+      viewportHeight = newViewportHeight;
+    });
+  }
