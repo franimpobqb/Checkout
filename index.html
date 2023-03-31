@@ -423,7 +423,7 @@
                                                 <li class="nav-item" role="presentation" style="cursor: inherit;">
                                                     <button class="nav-link" id="tab-tarjeta2" data-bs-toggle="tab"
                                                         data-bs-target="#tabTarjeta2" type="button" role="tab" aria-controls="tabTarjeta2"
-                                                        aria-selected="false" style="pointer-events: none;">Tarjeta 2</button>
+                                                        aria-selected="false" style="">Tarjeta 2</button>
                                                 </li>
                     
                                             </ul>
@@ -517,7 +517,7 @@
                                                                     <div class="bqb-col-12 mt-3" style="margin-top: 2rem;">
                                                                         <button class="button-primary w-100" style="width: 100%;"
                                                                             id="switchTarjeta2" disabled type="submit"
-                                                                            onclick="event.preventDefault();">INGRESAR SEGUNDA
+                                                                            onclick="event.preventDefault();">IR A SEGUNDA
                                                                             TARJETA ></button>
                                                                     </div>
                                                                 </div>
@@ -538,7 +538,7 @@
                                                         <div class="bqb-col-12">
                                                             <p style="font-size: 1.5rem; color: gray;">Con esta tarjeta vas a pagar <span
                                                                     class="card-ammount">ARS 16.000</span></p>
-                                                            <hr>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="bqb-row reverse-mobile">
@@ -666,123 +666,105 @@
                         </div>
 
                     </div>
-                    <div class="bqb-col-12 bqb-col-lg-4 checkout-details details-col-right" id="sidebar">
-
-                        <div class="final-price-mobile" id="" onclick="toggleUp();"> Precio final 
-                            <img src="https://www.buquebus.com/Portal/resources/Bqb/icon-plus.svg" alt="">
+                    <div class="bqb-col-12 bqb-col-lg-4 checkout-details details-col-right">
+                        <div class="final-price-mobile" onclick="cCommon.showDetailPriceMob();">
+                        Precio final
+                        <i class="bqb-icon-chevron-down"></i>
                         </div>
-
-                            <div class="checkout-card">
-                                <div class="details-trip">
-                                    <h3>Detalle de la compra</h3>
-                                    <div class="trip-body">
-                                        <h4>Ida</h4>
-                                        <h5>
-                                            <span class="search-date-format">jueves 20 <span>de</span> abril <span>de</span>
-                                                2023</span>
-                                        </h5>
-                                        <div class="body-times">
-                                            <span>07:30hs.</span>
-                                            <span class="times-icon icon-ship"><i class="bqb-icon-boarding-info"
-                                                    aria-hidden="true"></i></span>
-                                            <span class="times-line line-ship"></span>
-                                            <span class="times-dot"></span>
-                                            <span>09:45hs.</span>
-                                        </div>
-                                        <ul class="body-legs">
-                                            <li>Buenos Aires</li>
-                                            <li></li>
-                                            <li>Montevideo</li>
-                                        </ul>
-                                        <div class="body-details">
-                                        </div>
-                                    </div>
-                                    <!-- Vuelta -->
-                                    <div class="trip-body">
-                                        <h4>Vuelta</h4>
-                                        <h5>
-                                            <span class="search-date-format">jueves 20 <span>de</span> abril <span>de</span>
-                                                2023</span>
-                                        </h5>
-                                        <div class="body-times">
-                                            <span>19:30hs.</span>
-                                            <span class="times-icon icon-ship"><i class="bqb-icon-boarding-info"
-                                                    aria-hidden="true"></i></span>
-                                            <span class="times-line line-ship"></span>
-                                            <span class="times-dot"></span>
-                                            <span>21:45hs.</span>
-                                        </div>
-                                        <ul class="body-legs">
-                                            <li>Montevideo</li>
-                                            <li></li>
-                                            <li>Buenos Aires</li>
-                                        </ul>
-                                        <div class="body-details">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="details-payment">
-                                    <h3>Detalle del pago</h3>
-                                    <div class="bqb-row" style="">
-                                        <div class="bqb-col-6">Tasas e Impuestos</div>
-                                        <div class="bqb-col-6 payment-digits text-right" id="import-tax">
-                                            <span class="price-trip">ARS</span>
-                                            <span id="total-reservation-tax">3.575
-                                                <!--3.575--></span>
-                                        </div>
-                                    </div>
-                                    <div class="bqb-row" style="">
-                                        <div class="bqb-col-6">Pasajes</div>
-                                        <div class="bqb-col-6 payment-digits text-right">
-                                            <span class="price-trip">ARS</span>
-                                            <span id="total-reservation-tickets">27.180
-                                                <!--27.180--></span>
-                                        </div>
-                                    </div>
-                                    <!-- ADICIONALES -->
-                                    <div class="bqb-row" id="cont-addit-resume">
-                                    </div><!-- FIN ADICIONALES -->
-                                    <!-- AGREGAR IF RANGE MILLAS -->
-                                    <!-- FIN RANGE MILLAS -->
-                                    <div class="bqb-row payment-bold" style="margin-top:7px">
-                                        <div class="bqb-col-6">Total Pasajes<span style="display:none">30.755</span></div>
-                                        <div class="bqb-col-6 payment-digits text-right">
-                                            <span class="price-trip">ARS</span>
-                                            <span id="total-reservation">30.755</span>
-                                        </div>
-                                    </div>
-                                    <div class="body-times cabin-selected" id="currency-icon">
-                                        <span class="cabin-price-pax">Mostrar importes en monedas extranjeras</span>
-                                        <i class="bqb-icon-chevron-down bqb-icon-margin-left" aria-hidden="true"> </i>
-                                    </div>
-                                    <div id="currency-type" class="">
-                                        <div class="body-times cabin-selected"><span class="cabin-price-pax">Real
-                                            </span><span id="tot_compra"> BRL&nbsp;<span id="valueIdCurrency-5">893.60
-                                                </span></span></div>
-                                        <div class="body-times cabin-selected"><span class="cabin-price-pax">Dolar
-                                            </span><span id="tot_compra"> USD&nbsp;<span id="valueIdCurrency-2">170.86
-                                                </span></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modulo : Resumen de Compra : End -->
-                            <!-- boton pagar o continuar -->
-                            <div class="section-cta justify-content-end" style="margin-top: 20px;" id="final-paymet-cont">
-                                <div class="terms-and-conditions__wrapper">
-                                    <input type="checkbox" id="checkboxTermsAndConditions">
-                                    <span class="custom-checkbox" for="#termsAndConditions"></span>
-                                    <label for="">Acepto los &nbsp;<b><span class="open-modal" style="cursor: pointer"
-                                                onclick="terminosCondiciones();">terminos y condiciones</span></b></label>
-                                </div>
-                                <button class="button-primary disabled-pay" id="btnPay" style="display:block;"> Pagar
-                                </button>
-                                <button class="button-primary disabled-pay" type="submit" id="btnPayDataCard"
-                                    style="display:none;"> Pagar </button>
-                            </div>
-                            <!-- fin boton pagar o continuar -->
-                      
-
-                    </div>
+                        <div class="checkout-card">
+                        <div class="details-trip">
+                        <h3>Detalle de la compra</h3>
+                        <div class="trip-body">
+                        <h4>Ida</h4>
+                        <h5>
+                        <span class="search-date-format">miércoles 19 <span>de</span> abril <span>de</span> 2023</span>
+                        </h5>
+                        <div class="body-times">
+                        <span>07:30hs.</span>
+                        <span class="times-icon icon-ship"><i class="bqb-icon-boarding-info" aria-hidden="true"></i></span>
+                        <span class="times-line line-ship"></span>
+                        <span class="times-dot"></span>
+                        <span>10:15hs.</span>
+                        </div>
+                        <ul class="body-legs">
+                        <li>Buenos Aires</li>
+                        <li></li>
+                        <li>Montevideo</li>
+                        </ul>
+                        <div class="body-details">
+                        </div>
+                        </div>
+                        
+                        <div class="trip-body">
+                        <h4>Vuelta</h4>
+                        <h5>
+                        <span class="search-date-format">viernes 21 <span>de</span> abril <span>de</span> 2023</span>
+                        </h5>
+                        <div class="body-times">
+                        <span>07:00hs.</span>
+                        <span class="times-icon icon-bus"><i class="bqb-icon-bus" aria-hidden="true"></i></span>
+                        <span class="times-line line-bus"></span>
+                        <span class="times-icon icon-ship"><i class="bqb-icon-boarding-info" aria-hidden="true"></i></span>
+                        <span class="times-line line-ship"></span>
+                        <span class="times-dot"></span>
+                        <span>11:31hs.</span>
+                        </div>
+                        <ul class="body-legs">
+                        <li>Montevideo</li>
+                        <li></li>
+                        <li>Buenos Aires</li>
+                        </ul>
+                        <div class="body-details">
+                        </div>
+                        </div>
+                        </div>
+                        <div class="details-payment">
+                        <h3>Detalle del pago</h3>
+                        <div class="bqb-row" style="">
+                        <div class="bqb-col-6">Tasas e Impuestos</div>
+                        <div class="bqb-col-6 payment-digits text-right" id="import-tax">
+                        <span class="price-trip">ARS</span>
+                        <span id="total-reservation-tax">4.811</span>
+                        </div>
+                        </div>
+                        <div class="bqb-row" style="">
+                        <div class="bqb-col-6">Pasajes</div>
+                        <div class="bqb-col-6 payment-digits text-right">
+                        <span class="price-trip">ARS</span>
+                        <span id="total-reservation-tickets">35.317</span>
+                        </div>
+                        </div>
+                        
+                        <div class="bqb-row" id="cont-addit-resume">
+                        </div>
+                        
+                        
+                        <div class="bqb-row payment-bold" style="margin-top:7px">
+                        <div class="bqb-col-6">Total Pasajes<span style="display:none">40.128</span></div>
+                        <div class="bqb-col-6 payment-digits text-right">
+                        <span class="price-trip">ARS</span>
+                        <span id="total-reservation">40.128</span>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        
+                        
+                        <div class="section-cta justify-content-end" style="margin-top: 20px;" id="final-paymet-cont">
+                        <div class="terms-and-conditions__wrapper">
+                        <input type="checkbox" id="checkboxTermsAndConditions">
+                        <span class="custom-checkbox" for="#termsAndConditions"></span>
+                        <label>Acepto los &nbsp;<b><span class="open-modal" style="cursor: pointer" onclick="terminosCondiciones();">terminos y condiciones</span></b></label>
+                        </div>
+                        <button class="button-primary disabled-pay" id="btnPay" style="display:block;">
+                        Pagar
+                        </button>
+                        <button class="button-primary disabled-pay" type="submit" id="btnPayDataCard" style="display:none;">
+                        Pagar
+                        </button>
+                        </div>
+                        
+                        </div>
                 </div>
             </div>
         </div>

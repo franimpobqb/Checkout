@@ -412,9 +412,9 @@
             background: #f8fcff;
         }
 
-        #sidebar.fijar .checkout-card-desktop {
+        #sidebar.fijar .section-cta {
             position: sticky;
-            top: 10px;
+            top: 20px;
         }
 
     }
