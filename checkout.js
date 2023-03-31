@@ -197,3 +197,25 @@ function toggleUp() {
   document.getElementById('sidebar').classList.remove('toggleDown');
   console.log('chau');
 }
+
+function addClassIfKeyboardVisible() {
+    const sidebar = document.getElementById('sidebar');
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    document.addEventListener('focusin', () => {
+      if (isMobile && document.activeElement.nodeName === 'INPUT') {
+        setTimeout(() => {
+          const newViewportHeight = window.innerHeight;
+          if (viewportHeight > newViewportHeight) {
+            sidebar.classList.add('toggleDown');
+          }
+          viewportHeight = newViewportHeight;
+        }, 100);
+      }
+    });
+    
+    document.addEventListener('focusout', () => {
+      sidebar.classList.remove('toggleDown');
+    });
+  }
+  
