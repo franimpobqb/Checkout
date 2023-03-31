@@ -40,11 +40,16 @@ const switchTarjeta2Btn = document.querySelector("#switchTarjeta2");
 
 /* ----- FUNCIONES ----- */
 
-/* BOTON PARA PASAR A SEGUNDA TARJETA EN MODAL DE PAGO CON DOS TARJETAS */
+/* BOTON PARA PASAR A LA OTRA TARJETA EN MODAL DE PAGO CON DOS TARJETAS */
 document.querySelector("#switchTarjeta2").addEventListener("click", function () {
     var selectTab2 = document.querySelector('#tab-tarjeta2');
     var tab2 = new bootstrap.Tab(selectTab2);
     tab2.show();
+});
+document.querySelector("#switchTarjeta1").addEventListener("click", function () {
+    var selectTab1 = document.querySelector('#tabTarjeta1-tab');
+    var tab1 = new bootstrap.Tab(selectTab1);
+    tab1.show();
 });
 
 /* ACTIVAR BOTONES SI LOS INPUTS ESTÁN COMPLETOS */
