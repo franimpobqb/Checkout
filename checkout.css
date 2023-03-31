@@ -11,6 +11,16 @@
         margin-top: 2rem;
     }
 
+    #cont-payment-methods .tarjetas-habilitadas {
+        text-align: right;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 0;
+        text-decoration: underline;
+        color: #0077c4;
+        cursor: pointer;
+    }
+
     ul.new-payment-method-menu {
         box-shadow: inset 0px 0px 0px 0.1rem #D6D6D6;
         border-radius: 10px;
@@ -159,9 +169,12 @@
         display: none;
         margin-top: -1rem;
         margin-bottom: 4rem;
-
         border-radius: 10px;
 
+    }
+
+    .form-tarjeta .tab-content {
+        padding-left: 0;
     }
 
     .form-tarjeta .modal-footer {
@@ -175,7 +188,7 @@
 
     .form-tarjeta h5 {
         font-weight: bold;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         color: #0077c4;
     }
 
@@ -251,7 +264,7 @@
         border: none;
         background: none;
         outline: none;
-        color: rgb(145, 145, 145);
+        color: rgb(187, 187, 187);
         text-transform: uppercase;
         font-weight: bold;
         font-size: 1.4rem;
@@ -331,8 +344,16 @@
         transition: all .2s ease;
     }
 
+    .form-tarjeta button.button-primary.button-tertiary {
+        padding: .5rem 1rem;
+        color: #0077c4;
+        background: none;
+        font-weight: bold;
+        transition: all .2s ease;
+        text-decoration: underline;
+    }
+
     .form-tarjeta button:disabled {
-        background-color: gray;
         cursor: default;
     }
 
@@ -397,6 +418,45 @@
         text-transform: none;
     }
 
+    .section-cta-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .section-cta-mobile .final-price-mobile {
+        padding-top: 0;
+    }
+
+    .section-cta-mobile button.button-primary#btnPay,
+    .section-cta-mobile button.button-primary#btnPayCard {
+        width: auto;
+        padding: 1rem 2rem;
+        min-width: 120px;
+    }
+
+    .section-cta-mobile .final-price-mobile .ver-detalle {
+        display: flex;
+        /* justify-content: flex-end; */
+        /* align-items: flex-end; */
+        line-height: 1;
+    }
+
+    .section-cta-mobile .final-price-mobile .ver-detalle {
+        color: #0077c4;
+    }
+
+    .section-cta-mobile .final-price-mobile .ver-detalle i {
+        margin-left: 10px;
+    }
+
+    .section-cta-mobile .final-price-mobile p {
+        margin-bottom: .75rem;
+        color: #0077c4;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+
     @media (min-width: 991.98px) {
         .card-container {
             padding-top: 26px;
@@ -412,10 +472,10 @@
             background: #f8fcff;
         }
 
-  /*       #sidebar.fijar .section-cta {
+        .checkout-details.fijar .section-cta {
             position: sticky;
             top: 20px;
-        } */
+        }
 
     }
 
@@ -451,7 +511,9 @@
         }
 
         .form-tarjeta {
-            border-bottom: solid 1px #f3f3f3;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-bottom: 5rem;
         }
 
         .form-tarjeta .modal-dialog {
@@ -1146,23 +1208,20 @@ filter: drop-shadow(0 1px 1px black); */
     }
 
 
-    .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {}
+    .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
+        padding: 0 15px 20px;
+    }
 
     @media (max-width: 991.98px) {
-      /*   .checkout-details .checkout-card {
+        .checkout-details .checkout-card {
             display: none;
         }
-
+ 
         .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
-            margin-bottom: 0 !important;
-            height: 120px;
-            transition: all .2s ease;
-            -webkit-transition: all .2s ease;
-            -moz-transition: all .2s ease;
-            -ms-transition: all .2s ease;
-            -o-transition: all .2s ease;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
         }
-
+ /* 
         .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right.toggleDown {
             transform: translateY(20px);
             -webkit-transform: translateY(20px);

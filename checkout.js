@@ -172,7 +172,7 @@ paymentRadios.forEach(radio => {
 
 
 window.addEventListener('scroll', function () {
-    var sidebar = document.getElementById('sidebar');
+    var sidebar = document.querySelector('.checkout-details');
     var sidebarPosition = sidebar.getBoundingClientRect().top + window.pageYOffset;
     if (window.pageYOffset > sidebarPosition) {
         sidebar.classList.add('fijar');
@@ -184,7 +184,7 @@ window.addEventListener('scroll', function () {
 
 
 
-function addClassIfKeyboardVisible() {
+/* function addClassIfKeyboardVisible() {
     const sidebar = document.getElementById('sidebar');
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
@@ -230,4 +230,4 @@ function addClassIfKeyboardVisible() {
       }
       viewportHeight = newViewportHeight;
     });
-  }
+  } */
