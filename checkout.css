@@ -412,10 +412,10 @@
             background: #f8fcff;
         }
 
-        #sidebar.fijar .section-cta {
+  /*       #sidebar.fijar .section-cta {
             position: sticky;
             top: 20px;
-        }
+        } */
 
     }
 
@@ -1149,7 +1149,7 @@ filter: drop-shadow(0 1px 1px black); */
     .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {}
 
     @media (max-width: 991.98px) {
-        .checkout-details .checkout-card {
+      /*   .checkout-details .checkout-card {
             display: none;
         }
 
@@ -1193,6 +1193,6 @@ filter: drop-shadow(0 1px 1px black); */
             color: #0077c4;
             font-weight: bold;
         }
-
+ */
 
     }
