@@ -424,9 +424,8 @@
         .card-container {
             padding-top: 26px;
         }
-
-        #cluster-resumen {
-            display: none;
+        .checkout-card .close-mobile {
+        display: none;
         }
 
         .form-tarjeta {
@@ -439,6 +438,8 @@
             position: sticky;
             top: 20px;
         }
+
+        
 
     }
 

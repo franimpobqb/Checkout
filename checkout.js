@@ -129,11 +129,13 @@ paymentRadios.forEach(radio => {
             targetForm.style.display = 'block';
             document.getElementById('btnPay').disabled = true;
 
-            // Hacer focus automaticamente en el primer input (por el momento desactivado)
+            // Hacer focus automaticamente en el primer input en desktop
             if (!/Mobi/.test(navigator.userAgent)) {
                 const firstInput = targetForm.querySelector('form input[name="cardNumber"]');
                 firstInput.focus();
-            } else {
+            }
+            // En mobile solo hacer scroll para que se vea
+            else {
                 cardFormsContainer.scrollIntoView({
                     behavior: 'smooth'
                 });
@@ -170,7 +172,7 @@ paymentRadios.forEach(radio => {
     });
 });
 
-
+/* AGREGAR UNA CLASE AL DETALLE DE PAGO PARA QUE AL HACER SCROLL SE FIJE EL BOTON DE PAGAR EN DESKTOP */
 window.addEventListener('scroll', function () {
     var sidebar = document.querySelector('.checkout-details');
     var sidebarPosition = sidebar.getBoundingClientRect().top + window.pageYOffset;
@@ -180,54 +182,3 @@ window.addEventListener('scroll', function () {
         sidebar.classList.remove('fijar');
     }
 });
-
-
-
-
-/* function addClassIfKeyboardVisible() {
-    const sidebar = document.getElementById('sidebar');
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    document.addEventListener('focusin', () => {
-      if (isMobile && document.activeElement.nodeName === 'INPUT') {
-        setTimeout(() => {
-          const newViewportHeight = window.innerHeight;
-          if (viewportHeight > newViewportHeight) {
-            sidebar.classList.add('toggleDown');
-          }
-          viewportHeight = newViewportHeight;
-        }, 100);
-      }
-    });
-    
-    document.addEventListener('focusout', () => {
-      sidebar.classList.remove('toggleDown');
-    });
-  }
-  
-
-  function adjustStickyElementForMobile() {
-    const stickyElement = document.getElementById('sidebar');
-    let originalPosition;
-    let originalOffsetTop;
-    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  
-    // Save the original position and offset of the sticky element
-    originalPosition = stickyElement.style.position;
-    originalOffsetTop = stickyElement.offsetTop;
-  
-    // Listen for the resize event to detect when the keyboard is visible
-    window.addEventListener('resize', () => {
-      const newViewportHeight = window.innerHeight;
-      if (isMobile && viewportHeight > newViewportHeight) {
-        // Keyboard is visible, adjust the position of the sticky element
-        stickyElement.style.position = 'fixed';
-        stickyElement.style.top = '0';
-      } else {
-        // Keyboard is hidden, reset the position of the sticky element
-        stickyElement.style.position = originalPosition;
-        stickyElement.style.top = originalOffsetTop + 'px';
-      }
-      viewportHeight = newViewportHeight;
-    });
-  } */

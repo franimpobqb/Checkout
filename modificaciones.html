@@ -474,25 +474,28 @@
 
 
 <!-- BOTÓN DE TERMINOS Y CONDICIONES  Y DE PAGAR  -->
-<div class="section-cta justify-content-end" style="margin-top: 20px;" id="final-paymet-cont">
-    <div class="terms-and-conditions__wrapper">
-        <input type="checkbox" id="checkboxTermsAndConditions">
-        <span class="custom-checkbox" for="#termsAndConditions"></span>
-        <label>Acepto los &nbsp;<b><span class="open-modal" style="cursor: pointer"
-                    onclick="terminosCondiciones();">terminos y
-                    condiciones</span></b></label>
+<div class="section-cta justify-content-end" style="margin-top: 20px;"
+id="final-paymet-cont">
+<div class="terms-and-conditions__wrapper">
+    <input type="checkbox" id="checkboxTermsAndConditions">
+    <span class="custom-checkbox" for="#termsAndConditions"></span>
+    <label>Acepto los &nbsp;<b><span class="open-modal" style="cursor: pointer"
+                onclick="terminosCondiciones();">terminos y
+                condiciones</span></b></label>
+</div>
+<div class="section-cta-mobile">
+    <div class="final-price-mobile" onclick="cCommon.showDetailPriceMob();">
+        <span>Precio final</span>
+        <p>ARS 42.300</p>
+        <span class="ver-detalle">Ver detalle <i
+                class="bqb-icon-chevron-up"></i></span>
     </div>
-    <div class="section-cta-mobile">
-        <div class="final-price-mobile" onclick="cCommon.showDetailPriceMob();">
-            <span>Precio final</span>
-            <p>ARS 42.300</p>
-            <span class="ver-detalle">Ver detalle <i class="bqb-icon-chevron-right"></i></span>
-        </div>
-        <button class="button-primary disabled-pay" id="btnPay" style="display:block;">
-            Pagar
-        </button>
-        <button class="button-primary disabled-pay" type="submit" id="btnPayDataCard" style="display:none;">
-            Pagar
-        </button>
-    </div>
+    <button class="button-primary disabled-pay" id="btnPay" style="display:block;">
+        Pagar
+    </button>
+    <button class="button-primary disabled-pay" type="submit" id="btnPayDataCard"
+        style="display:none;">
+        Pagar
+    </button>
+</div>
 </div>
