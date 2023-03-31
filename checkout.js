@@ -182,4 +182,18 @@ window.addEventListener('scroll', function () {
 });
 
 
+const inputs = document.querySelectorAll('.bqb-form-group input, .bqb-form-group textarea, .input-date-wrapper input');
+inputs.forEach(input => {
+  input.addEventListener('blur', toggleUp);
+  input.addEventListener('focus', toggleDown);
+});
 
+function toggleDown() {
+
+  document.getElementById('sidebar').classList.add('toggleDown');
+}
+
+function toggleUp() {
+  document.getElementById('sidebar').classList.remove('toggleDown');
+  console.log('chau');
+}
