@@ -194,30 +194,30 @@
 
     .row-logos {
         display: flex;
-        justify-content: space-between;
-        gap: 1.5rem;
-        margin-bottom: 3rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
     }
-
-    .row-logos img {
-        max-width: 70px;
-        max-height: 40px;
-    }
+    
 
     .row-logos div {
         display: flex;
         text-align: center;
-        align-items: flex-start;
-        gap: .75rem;
+        align-items: center;
+        justify-content: center;
+        gap: 5%;
         flex-direction: column;
+        margin-bottom: 3rem;
+        width: 33%;
     }
 
-    .row-logos div img {
-        width: 100%;
-        max-height: inherit;
-        max-width: inherit;
+    .row-logos div img {width: 100%;
+        max-width: 90px;
+        max-height: 60px;
     }
-
+    .row-logos.otros div img {
+        max-width: 135px;
+    }
     /* SELECTOR TABS */
 
 
@@ -418,44 +418,7 @@
         text-transform: none;
     }
 
-    .section-cta-mobile {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
 
-    .section-cta-mobile .final-price-mobile {
-        padding-top: 0;
-    }
-
-    .section-cta-mobile button.button-primary#btnPay,
-    .section-cta-mobile button.button-primary#btnPayCard {
-        width: auto;
-        padding: 1rem 2rem;
-        min-width: 120px;
-    }
-
-    .section-cta-mobile .final-price-mobile .ver-detalle {
-        display: flex;
-        /* justify-content: flex-end; */
-        /* align-items: flex-end; */
-        line-height: 1;
-    }
-
-    .section-cta-mobile .final-price-mobile .ver-detalle {
-        color: #0077c4;
-    }
-
-    .section-cta-mobile .final-price-mobile .ver-detalle i {
-        margin-left: 10px;
-    }
-
-    .section-cta-mobile .final-price-mobile p {
-        margin-bottom: .75rem;
-        color: #0077c4;
-        font-size: 1.8rem;
-        font-weight: bold;
-    }
 
     @media (min-width: 991.98px) {
         .card-container {
@@ -480,6 +443,13 @@
     }
 
     @media (max-width: 991.97px) {
+        .reverse-mobile {
+            flex-direction: column-reverse;
+        }
+
+        #cont-payment-methods .tarjetas-habilitadas {
+            font-size: 1.1rem;
+        }
 
         li.new-payment-method-item label p {
             font-size: 1.3rem;
@@ -510,10 +480,16 @@
             font-size: 1.2rem;
         }
 
-        .form-tarjeta {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            margin-bottom: 5rem;
+        .row-logos.otros  > * {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .row-logos div img {
+            width: 100%;
+            max-width: 57px;
+            max-height: 50px;
         }
 
         .form-tarjeta .modal-dialog {
@@ -530,8 +506,92 @@
             border: none;
         }
 
-        .reverse-mobile {
-            flex-direction: column-reverse;
+
+        .checkout-details .checkout-card {
+            display: none;
+        }
+
+        .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .section-cta-mobile {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-cta-mobile .final-price-mobile {
+            padding-top: 0;
+        }
+
+        .section-cta-mobile button.button-primary#btnPay,
+        .section-cta-mobile button.button-primary#btnPayCard {
+            width: auto;
+            padding: 1rem 2rem;
+            min-width: 140px;
+        }
+
+        .section-cta-mobile .final-price-mobile .ver-detalle {
+            display: flex;
+            /* justify-content: flex-end; */
+            /* align-items: flex-end; */
+            line-height: 1;
+        }
+
+        .section-cta-mobile .final-price-mobile .ver-detalle {
+            color: #0077c4;
+        }
+
+        .section-cta-mobile .final-price-mobile .ver-detalle i {
+            margin-left: 10px;
+        }
+
+        .section-cta-mobile .final-price-mobile p {
+            margin-bottom: .75rem;
+            color: #0077c4;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .terms-and-conditions__wrapper {
+            text-align: center;
+        }
+
+        .checkout-card .close-mobile {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 60px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .checkout-card .trip-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .checkout-details.details-col-right h3 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .checkout-details.details-col-right h5 {
+            margin-bottom: .75rem;
+        }
+
+        .details-col-right .details-payment {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .search-date-format {
+            font-size: 1.6rem;
         }
     }
 
@@ -1210,48 +1270,4 @@ filter: drop-shadow(0 1px 1px black); */
 
     .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
         padding: 0 15px 20px;
-    }
-
-    @media (max-width: 991.98px) {
-        .checkout-details .checkout-card {
-            display: none;
-        }
- 
-        .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right {
-          border-top-left-radius: 10px;
-          border-top-right-radius: 10px;
-        }
- /* 
-        .bqb-col-12.bqb-col-lg-4.checkout-details.details-col-right.toggleDown {
-            transform: translateY(20px);
-            -webkit-transform: translateY(20px);
-            -moz-transform: translateY(20px);
-            -ms-transform: translateY(20px);
-            -o-transform: translateY(20px);
-}
-
-        .final-price-mobile {
-            position: absolute;
-            background: #fff;
-            display: flex;
-            gap: 1rem;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            top: -3rem;
-            width: 200px;
-            left: calc(50% - 100px);
-            background-color: #fff;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-            border: none;
-            padding-top: .5rem;
-            padding-bottom: .5rem;
-            box-shadow: rgba(0, 0, 0, 0.15) 0px -3px 12px;
-            text-transform: uppercase;
-            color: #0077c4;
-            font-weight: bold;
-        }
- */
-
     }
