@@ -170,9 +170,15 @@ paymentRadios.forEach(radio => {
             field.value = '';
             field.dispatchEvent(new Event('keyup'));
         });
+
         // Volver el grafico de la tarjeta a gris
         document.querySelectorAll('.bqb-card').forEach((bqbCard) => {
             bqbCard.classList.remove('bqb-card-unknown');
+        });
+
+        // 04/04 - Desactivar el select de cuotas
+        document.querySelectorAll('.form-tarjeta .payment_fees').forEach((selectorCuotas) => {
+            selectorCuotas.disabled = true;
         });
     });
 });
@@ -186,4 +192,20 @@ window.addEventListener('scroll', function () {
     } else {
         sidebar.classList.remove('fijar');
     }
+});
+
+
+// 04 / 04 - ACTIVAR LAS CUOTAS RECIEN CUANDO SE SELECCIONA UN BANCO
+const selectCards = document.querySelectorAll(".select_card");
+
+selectCards.forEach(selectCard => {
+    selectCard.addEventListener("change", () => {
+        const paymentFees = selectCard.closest(".bqb-row").querySelector(".payment_fees");
+
+       if (selectCard.value) {
+            paymentFees.disabled = false;
+        } else {
+            paymentFees.disabled = true;
+        }
+    });
 });
